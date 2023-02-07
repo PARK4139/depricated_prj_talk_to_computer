@@ -45,7 +45,7 @@ def ipconfig():
 
 def saveFileAs(fileAddress):
     startRecordCommand(fileAddress)    
-    print("이것은 변수가 두개가 더 필요해 보입니다.")
+    print("이것은 param 두개가 더 필요해 보입니다.")
     endRecordCommand()
 
 def readFile(fileAddress):
@@ -83,11 +83,11 @@ def AI_listen():
         audio=r.listen(source)
     
     try:
-        # text=r.recognize_google(audio, language='ko-KR') #잘 못 알아먹는다..
+        text=r.recognize_google(audio, language='ko-KR') #잘 못 알아먹는다..
         # text=r.recognize_google_cloud(audio, language='ko-KR') # 인증 키가 없어서 안되나보다.
         # text=r.recognize_ibm(audio, language='ko')  # 인증 키가 없어서 안되나보다.
         # text=r.recognize_sphinx(audio, language='ko')  #안되는데 그냥
-        text=r.recognize_bing(audio, language='ko')    # 인증 키가 없어서 안되나보다.
+        # text=r.recognize_bing(audio, language='ko')    # 인증 키가 없어서 안되나보다.
         # text=r.recognize_sphinx(audio, language='ko')   
         print(text)    
     except sr.UnknownValueError:
