@@ -236,9 +236,10 @@ if AI_cmd_code == '1':
     # AI_speak('미세먼지랭킹 날씨 정보를 디스플레이 시도합니다')
     # AI_run('https://www.dustrank.com/air/air_dong_detail.php?addcode=41173103')
     # AI_speak('시도완료했습니다')
-    AI_run('https://www.dustrank.com/air/air_dong_detail.php?addcode=41173103')
     AI_speak('미세먼지랭킹 날씨 정보 디스플레이를 시도합니다')
+    AI_run('https://www.dustrank.com/air/air_dong_detail.php?addcode=41173103')
 elif AI_cmd_code == '2':
+    AI_speak('해당 기능은 아직 기능이 준비되지 않았습니다')
 
 
 # cnt = 0
@@ -251,6 +252,3 @@ elif AI_cmd_code == '2':
     # cls()
     # break
 # print("____________________________________________________>> AI_Territory e
-
-exit()
-cls
