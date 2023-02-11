@@ -1,24 +1,25 @@
-REM echo "____________________________________________________________>>pip 환경변수 영구추가
+REM echo "______________________________________________________________ pip 환경변수 영구추가
 REM set PATH_THAT_I_WANT_TO_ADD=C:\Users\WIN10PROPC3\AppData\Local\Programs\Python\Python311\Scripts
 REM setx path "%path%;%PATH_THAT_I_WANT_TO_ADD%;"
-REM echo "____________________________________________________________>>project_py 이동
+REM echo "______________________________________________________________ project_py 이동
 REM cd C:\Users\WIN10PROPC3
 REM mkdir prjs
 REM cd C:\Users\WIN10PROPC3\prjs
-REM echo "____________________________________________________________>>project_TTS_STT 이동
+REM echo "______________________________________________________________ project_TTS_STT 이동
 REM mkdir project_TTS_STT
 REM cd project_TTS_STT
-REM echo "____________________________________________________________>>pyVirtualEnvironment1 활성화
+REM echo "______________________________________________________________ pyVirtualEnvironment1 활성화
 REM python -m venv pyVirtualEnvironment1
 REM .\pyVirtualEnvironment1\Scripts\activate
-REM echo "____________________________________________________________>>library 설치
+REM echo "______________________________________________________________ library 설치
 REM pip install gTTS
 REM pip install playsound
 REM pip install SpeechRecognition
 REM pip install PyAudio
 REM pip install selenium
 REM pip install psutil
-echo "____________________________________________________________>>python 실행
+REM pip install mutagen  
+echo "______________________________________________________________ python 실행
 cls
 
 
@@ -217,19 +218,21 @@ bnsp=' '
 
 
 
-# print("____________________________________________________>> AI_Territory s
+# print("______________________________________________________  AI_Territory s
 AI_cmd_code_list=[
 '1:미세먼지',
 '2:시간',
 '2:공간',
 ]
-AI_speak('AI 시스템이 준비되었습니다')
+# AI_speak('AI 시스템이 준비되었습니다')
+AI_speak('컴퓨터와 대화할 준비가 되었습니다.')
 cls()
 AI_print(AI_cmd_code_list)
 AI_speak('원하시는 명령코드를 입력해 주세요')
-
-
+time.sleep(1)
 AI_cmd_code='1'
+AI_speak(AI_cmd_code_list[AI_cmd_code-1].split(':')[-1]+'에 대한 명령코드가 입력되었습니다.')
+time.sleep(1)
 
 
 if AI_cmd_code == '1':
@@ -251,4 +254,4 @@ elif AI_cmd_code == '2':
     # if cnt == 1
     # cls()
     # break
-# print("____________________________________________________>> AI_Territory e
+# print("______________________________________________________  AI_Territory e

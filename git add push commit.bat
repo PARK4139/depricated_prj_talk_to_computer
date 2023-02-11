@@ -23,4 +23,5 @@ git push -u origin main | find "100%"
 echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> status
 :: git status | find "clean"
 git status | find "clean"
-pause
+REM pause
+timeout 4
