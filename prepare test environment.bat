@@ -26,38 +26,43 @@ cls
 py
 
 
-
-
 # -*- coding: utf-8 -*-
 import time
 import os
+import sys
 import speech_recognition as sr
 from selenium import webdriver
 from gtts import gTTS
 from sys import argv
+from mutagen.mp3 import MP3  
 import psutil   # 실행중인 프로세스 및 시스템 활용 라이브러리
-
 
 def cls():
     os.system('cls')
 
 def cwd():
-    import os
     print(os.getcwd())
 
 def dir():
-    import os
     for i in os.listdir():
-        print(i)
         # print(i, end = " ")
+        print(i)
 
 def mkdir(path):
-    import os
     os.mkdir(path)
 
 def mkdirtree(path):
-    import os
     os.mkdirs(path)
+
+def get_length_mp3(target_address):
+    try:
+        audio = MP3(target_address)  
+        print(audio.info.length)
+        return audio.info.length
+    except:   
+        print('get_length_mp3 메소드에서 에러가 발생하였습니다')
+        AI_speak('get_length_mp3 메소드에서 에러가 발생하였습니다')
+        time.sleep(5)
 
 
 def tasklist(): 
@@ -90,7 +95,6 @@ def taskkill(target_str):
 
 
 def startRecordCommand(file_address):
-    import sys
     from datetime import datetime 
     # sys.stdout = open('py cmd recording.txt', 'a', encoding='utf-8')  #
     # sys.stdout = open('py cmd recording.txt', 'w', encoding='utf-8')  #
@@ -98,11 +102,9 @@ def startRecordCommand(file_address):
     sys.stdout = open(file_address, 'w', encoding='utf-8')    #
 
 def endRecordCommand():
-    import sys
     sys.stdout.close()
 
 def ipconfig():
-    import os
     os.system('ipconfig')
 
 def saveFileAs(fileAddress):
@@ -218,7 +220,19 @@ bnsp=' '
 
 
 
-# print("______________________________________________________  AI_Territory s
+cls()
+#"______________________________________________________  test_Territory s
+get_length_mp3('./mp3/대기중입니다.mp3')
+
+
+remotedesktop = 'https://remotedesktop.google.com/access'
+jhppc1 = 'https://remotedesktop.google.com/access/session/b797cd99-b738-f4db-9b38-9a2e25a57a47'
+AI_run(jhppc1)
+#"______________________________________________________  test_Territory e
+
+
+
+
 AI_cmd_code_list=[
 '1:미세먼지',
 '2:시간',
@@ -255,3 +269,6 @@ elif AI_cmd_code == '2':
     # cls()
     # break
 # print("______________________________________________________  AI_Territory e
+
+
+
