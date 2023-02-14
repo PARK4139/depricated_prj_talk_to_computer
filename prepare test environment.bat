@@ -392,44 +392,39 @@ while(True):
         # 분마다 말하기
         # if int(mm)%'05'==0:
             # AI_speak('현재 시간은')
-            # AI_speak(HH)
-            # AI_speak('시')
-            # AI_speak(mm)
-            # AI_speak('분')
+            # AI_speak(HH+'시')
+            # AI_speak(mm+'분')
             # AI_speak('입니다')
         # if int(mm)%'10'==0:
             # AI_speak('현재 시간은')
-            # AI_speak(HH)
-            # AI_speak('시')
-            # AI_speak(mm)
-            # AI_speak('분')
+            # AI_speak(HH+'시')
+            # AI_speak(mm+'분')
             # AI_speak('입니다')
         if int(mm)%15==0:
             AI_speak('현재 시간은')
-            AI_speak(HH)
-            AI_speak('시')
-            AI_speak(mm)
-            AI_speak('분')
+            AI_speak(HH+'시')
+            AI_speak(mm+'분')
             AI_speak('입니다')
         # if int(mm)%00==0:
             # AI_speak('현재 시간은 '+HH+'시'+mm+'분'+' 입니다')
         #아침 6시 부터는 5분마다 시간 말하기
         if HH=='06' and int(mm)%5==0:
             AI_speak('현재 시간은')
-            AI_speak(HH)
-            AI_speak('시')
-            AI_speak(mm)
-            AI_speak('분')
+            AI_speak(HH+'시')
+            AI_speak(mm+'분')
             AI_speak('입니다')
         if HH=='07' and int(mm)%5==0:
             AI_speak('현재 시간은')
-            AI_speak(HH)
-            AI_speak('시')
-            AI_speak(mm)
-            AI_speak('분')
+            AI_speak(HH+'시')
+            AI_speak(mm+'분')
             AI_speak('입니다')
+
         if HH=='08' and mm=='00':
-            AI_speak('현재 시간은 '+HH+'시'+mm+'분'+' 입니다. 더이상 지체할 수 없습니다')
+            AI_speak('현재 시간은')
+            AI_speak(HH+'시')
+            AI_speak(mm+'분')
+            AI_speak('입니다')
+            AI_speak('더이상 나가는 것을 지체하기 어렵습니다')
         if HH=='06' and mm=='30':
             AI_speak('음악을 재생합니다')
         if HH=='08' and mm=='50':    
