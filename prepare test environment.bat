@@ -150,10 +150,8 @@ def AI_answer():
         mm=now.strftime('%M')
         # AI_speak('현재 시간은 '+HH+'시'+mm+'분'+' 입니다')
         AI_speak('현재 시간은')
-        AI_speak(HH)
-        AI_speak('시')
-        AI_speak(mm)
-        AI_speak('분')
+        AI_speak(HH+'시')
+        AI_speak(mm+'분')
         AI_speak('입니다')
         
     elif usr_input == '3': #[웹 스크랩핑 및 유효텍스트 파싱(지역별 미세먼지, 초미세먼지, 기온, 오존, 습도)]
@@ -378,6 +376,7 @@ AI_answer()
 cls()
 cnt = 0
 while(True):
+	cls()
     # time.sleep(5)
     if cnt==0:
         cnt+=1
@@ -447,6 +446,7 @@ while(True):
         if HH=='11' and mm=='50':
             AI_speak('12시 10분 전입니다')
             AI_speak('주무실 것을 추천드립니다')
+		
     
 
 
