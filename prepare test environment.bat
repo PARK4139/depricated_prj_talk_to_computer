@@ -155,7 +155,7 @@ def AI_answer():
         AI_speak('입니다')
         
     elif usr_input == '3': #[웹 스크랩핑 및 유효텍스트 파싱(지역별 미세먼지, 초미세먼지, 기온, 오존, 습도)]
-        AI_speak('웹 크롤링된 네이버 미세먼지 정보를 말씀드립니다')
+        AI_speak('네이버 미세먼지 정보 웹크롤링을 시도합니다.')
         dataWebLocation = "https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&qvt=0&query=%EC%A0%84%EA%B5%AD%EB%AF%B8%EC%84%B8%EB%A8%BC%EC%A7%80"
         dataWebLocation = unquote(dataWebLocation)
         page = requests.get(dataWebLocation)
@@ -164,10 +164,12 @@ def AI_answer():
         elements = soup.select(copied_html_selector)
         for index, element in enumerate(elements, 1):
             print("{} 번째 text: {}".format(index, element.text))
-        
-        lines = "네이버 미세먼지정보\n"+ element.text.replace("관측지점 현재 오전예보 오후예보","",1).replace("관측지점 현재 오전예보 오후예보","관측지점 현재 오전예보 오후예보\n").replace("지역별 미세먼지 정보","") .strip().replace("서울","\n서울").replace("경기","\n경기").replace("인천","\n인천").replace("강원","\n강원").replace("세종","\n세종").replace("충북","\n충북").replace("충남","\n충남").replace("전남","\n전남").replace("전북","\n전북").replace("광주","\n광주").replace("제주","\n제주").replace("대전","\n대전").replace("경북","\n경북").replace("경남","\n경남").replace("대구","\n대구").replace("울산","\n울산").replace("부산","\n부산").replace("     "," ").replace("\n ","\n").replace("  "," ").replace("  "," ")
+             
+        lines = "네이버 미세먼지정보\n"+ element.text.replace("관측지점 현재 오전예보 오후예보","",1).replace("지역별 미세먼지 정보","") .strip().replace("서울","\n서울").replace("경기","\n경기").replace("인천","\n인천").replace("강원","\n강원").replace("세종","\n세종").replace("충북","\n충북").replace("충남","\n충남").replace("전남","\n전남").replace("전북","\n전북").replace("광주","\n광주").replace("제주","\n제주").replace("대전","\n대전").replace("경북","\n경북").replace("경남","\n경남").replace("대구","\n대구").replace("울산","\n울산").replace("부산","\n부산").replace("     "," ").replace("\n ","\n").replace("  "," ").replace("  "," ")
         cls()
-        print(lines)
+        print(lines.replace("관측지점 현재 오전예보 오후예보","관측지점 현재 오전예보 오후예보\n"))
+        AI_speak('웹 크롤링된 네이버 미세먼지 정보를 말씀드립니다')
+        # AI_speak('웹 크롤링된 네이버 미세먼지 정보 접근을 시도합니다.')
         for line in range(0,len(lines.split('\n'))):
             AI_speak(lines.split('\n')[line])
         
@@ -195,7 +197,7 @@ def AI_speak(text):
     # address=os.getcwd()+'\\mp3\\음성인식 준비되었습니다.mp3'
     address=os.getcwd()+'\\mp3\\'+ text +'.mp3'
     if os.path.exists(address):
-        print('파일이 있어 재생을 시도합니다')
+        # print('파일이 있어 재생을 시도합니다')
         # os.system('"'+address+'"')#SUCCESS
         os.system('call "'+address+'"')#SUCCESS[경로공백포함 시 인식처리]
         
@@ -212,7 +214,7 @@ def AI_speak(text):
         time.sleep(length_of_mp3*1.05) 
         
     else:
-        print('파일이 없어 생성을 시도합니다')
+        # print('파일이 없어 생성을 시도합니다')
         mgr_gTTS = gTTS(text=text, lang='ko')
         mgr_gTTS.save('./mp3/'+ text +'.mp3')
         os.system('call "'+address+'"')#call을 사용해서 동기처리를 기대했으나 되지 않음.대안이 필요하다.
@@ -322,7 +324,7 @@ AI_available_cmd_code_list=[
 'foo:foo',
 'last:remotedesktop'
 ]
-AI_speak('fake AI system이 가동되었습니다')
+AI_speak('fake AI 시스템이 활성화되었습니다')
 AI_speak('컴퓨터와 대화할 준비가 되었습니다')
 #"______________________________________________________  mkr2
 cls()
@@ -330,9 +332,9 @@ AI_print(AI_available_cmd_code_list)
 AI_speak('원하시는 명령코드를 입력해 주세요')
 # AI_cmd_code='sd'
 # AI_cmd_code='taskkill'
-AI_cmd_code='1'
+# AI_cmd_code='1'
 # AI_cmd_code='2'
-# AI_cmd_code='3'
+AI_cmd_code='3'
 # AI_cmd_code='4'
 usr_input=AI_cmd_code
 
@@ -376,9 +378,8 @@ AI_answer()
 cls()
 cnt = 0
 while(True):
-	cls()
-    # time.sleep(5)
     if cnt==0:
+        AI_speak('while routine에 접근을 시도합니다')
         cnt+=1
     
     now = time
