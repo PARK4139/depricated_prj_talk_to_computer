@@ -391,7 +391,7 @@ while(True):
         started_time = time.strftime('%Y %m %d %H %M %S') 
         AI_speak('컴퓨터와 대화할 준비가 되었습니다') 
         cnt+=1
-        #cls()
+        cls()
     recorded_time = time
     yyyyMMddHHmmss=recorded_time.strftime('%Y %m %d %H %M %S')
     HH=recorded_time.strftime('%H')
