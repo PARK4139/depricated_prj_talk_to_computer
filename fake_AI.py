@@ -364,7 +364,7 @@ while(True):
     if cnt==0:
         # AI_speak('while routine에 접근을 시도합니다')
         started_time = time.strftime('%Y %m %d %H %M %S') 
-                                                                                                                                                                # AI_speak('컴퓨터와 대화할 준비가 되었습니다') 
+                                                                                                                                                                AI_speak('컴퓨터와 대화할 준비가 되었습니다') 
         cnt+=1
         #cls()
     recorded_time = time
