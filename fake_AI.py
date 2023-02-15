@@ -202,8 +202,10 @@ def AI_answer(usr_input):
         AI_run(remotedesktop)
         
     elif usr_input == 'sd':
+        AI_speak('1시간 뒤')
         AI_speak('시스템 종료를 시도합니다')
-        os.system('shutdown /s /t 3600') 
+        os.system('shutdown /s /t 3600') #1시간 뒤
+        # os.system('shutdown /s /t 600') #10분 뒤
         
     elif usr_input == 'foo':
         AI_speak('해당 기능은 아직 준비되지 않았습니다')
@@ -306,7 +308,7 @@ def AI_run(target_str):
 def AI_print(target_list):
     cnt=1
     for target in target_list:
-        print(target+cnt)
+        print(str(cnt)+nbsp+':'+nbsp+target)
         cnt+=1
 
 
@@ -351,7 +353,6 @@ AI_available_cmd_code_list=[
 '_________:_________',
 'foo:foo',
 '`:batch mode',
-'last:exit'
 ]
 high_frequency_batch_cmd_routine_pattern_list=[
 # '',
@@ -359,9 +360,7 @@ high_frequency_batch_cmd_routine_pattern_list=[
 # '',
 ''
 ]
-                                                                                                                                                            # AI_speak('fake AI 시스템이 활성화되었습니다') 
-#"______________________________________________________  mkr3[what was your childhood nickname? 테스트]
-
+                                                              
 #"______________________________________________________  mkr5
 #cls()
 cnt = 0
