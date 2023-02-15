@@ -29,6 +29,9 @@ def dir():
         # print(i, end = " ")
         print(i)
 
+def CRLF():
+    print('')
+
 def mkdir(path):
     os.mkdir(path)
 
@@ -106,15 +109,15 @@ def listen(recognizer, audio):
         # yyyyMMddHHmmss=now.strftime('%Y %m %d %H %M %S')
     # pass
 
-def AI_answer():
-    if usr_input == '1':
+def AI_answer(usr_input):
+    if usr_input == '미세먼지랭킹':
         # AI_speak('미세먼지랭킹 날씨 정보를 디스플레이 시도합니다')
         # AI_run('https://www.dustrank.com/air/air_dong_detail.php?addcode=41173103')
         # AI_speak('시도완료했습니다')
         AI_speak('미세먼지랭킹 날씨 정보에 접근을 시도합니다')
         AI_run('https://www.dustrank.com/air/air_dong_detail.php?addcode=41173103')
         
-    elif usr_input == '2':
+    elif usr_input == '시간':
         now = time
         yyyyMMddHHmmss=now.strftime('%Y %m %d %H %M %S')
         HH=now.strftime('%H')
@@ -125,7 +128,7 @@ def AI_answer():
         AI_speak(mm+'분')
         AI_speak('입니다')
         
-    elif usr_input == '3': #[웹 스크랩핑 및 유효텍스트 파싱(지역별 미세먼지, 초미세먼지, 기온, 오존, 습도)]
+    elif usr_input == '네이버 미세먼지': #[웹 스크랩핑 및 유효텍스트 파싱(지역별 미세먼지, 초미세먼지, 기온, 오존, 습도)]
         AI_speak('네이버 미세먼지 정보 웹크롤링을 시도합니다.')
         dataWebLocation = "https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&qvt=0&query=%EC%A0%84%EA%B5%AD%EB%AF%B8%EC%84%B8%EB%A8%BC%EC%A7%80"
         dataWebLocation = unquote(dataWebLocation)
@@ -135,17 +138,17 @@ def AI_answer():
         elements = soup.select(copied_html_selector)
         for index, element in enumerate(elements, 1):
             # print("{} 번째 text: {}".format(index, element.text))
-            print("do something....")
+            continue
         
         lines = "네이버 미세먼지정보\n"+ element.text.replace("관측지점 현재 오전예보 오후예보","",1).replace("지역별 미세먼지 정보","") .strip().replace("서울","\n서울").replace("경기","\n경기").replace("인천","\n인천").replace("강원","\n강원").replace("세종","\n세종").replace("충북","\n충북").replace("충남","\n충남").replace("전남","\n전남").replace("전북","\n전북").replace("광주","\n광주").replace("제주","\n제주").replace("대전","\n대전").replace("경북","\n경북").replace("경남","\n경남").replace("대구","\n대구").replace("울산","\n울산").replace("부산","\n부산").replace("     "," ").replace("\n ","\n").replace("  "," ").replace("  "," ")
         #cls()
         print(lines.replace("관측지점 현재 오전예보 오후예보","관측지점 현재 오전예보 오후예보\n"))
         # AI_speak('웹 크롤링된 네이버 미세먼지 정보 접근을 시도합니다.')
-        # AI_speak('웹 크롤링된 네이버 미세먼지 정보를 말씀드립니다')
         # AI_speak('네이버 미세먼지 정보입니다')
-        AI_speak('다음은 네이버 미세먼지 정보입니다')
-        AI_speak('관측지점 현재 오전예보 오후예보')
-        AI_speak('순서입니다')
+        # AI_speak('다음은 네이버 미세먼지 정보입니다')
+        # AI_speak('관측지점 현재 오전예보 오후예보')
+        # AI_speak('웹 크롤링된 네이버 미세먼지 정보를 말씀드립니다')
+        AI_speak('웹 크롤링된 서울과 경기도에 대한 네이버 미세먼지 정보를 말씀드립니다')
         
         # for line in range(0,len(lines.split('\n'))):
             # AI_speak(lines.split('\n')[line])
@@ -154,34 +157,67 @@ def AI_answer():
             # AI_speak(lines.split(' ')[line].strip())
             
         for line in range(0,len(lines.split('\n'))):
-            if lines.split('\n').contains('서울') or lines.split('\n').contains('경기'):
-                for words in range(0,len(lines.split('\n')[line].split('\n'))):
-                    AI_speak(lines.split('\n')[line].split('\n')[words])
+            if '서울' in lines.split('\n')[line]:
+                for i in lines.split('\n')[line].split('\n'):
+                    AI_speak(i)
+            if '경기' in lines.split('\n')[line]:
+                for i in lines.split('\n')[line].split('\n'):
+                    AI_speak(i)
                     
+                    
+    elif usr_input == '5':
+        AI_print(AI_available_cmd_code_list)
+        AI_speak("조회되었습니다")
+        
+    elif usr_input == '`':
+        AI_speak('batch mode 가 시작되었습니다')
+        print('batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s ')
+        batch_mode_input=input('>>>')
+        batch_mode_input=list(batch_mode_input)                         # batch_mode_input = [3,2,1]
+        AI_speak('가용명령의 개수는' + str(len(AI_available_cmd_code_list)) +'개 이고')
+        AI_speak('배치명령의 개수는' + str(len(batch_mode_input)) +'개 입니다')
+        for i in range(0,len(batch_mode_input)):                      # i=0
+            usr_input=AI_available_cmd_code_list[int(batch_mode_input[i])-1].split(':')[0] #usr_input=AI_available_cmd_code_list[2].split(':')[0] 
+            AI_speak(str(i+1)+'번째 코드를 실행시도합니다')
+            AI_answer(usr_input)
+        print('batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s ')
+        
                     
     elif usr_input == 'x':
+        exit()
+        
+    elif usr_input == '':
+        AI_speak('아무것도 입력되지 않았습니다')
+        AI_speak('명령코드를 입력해주세요')
+        
+                    
+    elif usr_input == 'jhppc1':
         jhppc1 = 'https://remotedesktop.google.com/access/session/b797cd99-b738-f4db-9b38-9a2e25a57a47'
         AI_run(jhppc1)
         
-    elif usr_input == 'xx':
+    elif usr_input == 'remotedesktop':
         remotedesktop = 'https://remotedesktop.google.com/access'
         AI_run(remotedesktop)
         
     elif usr_input == 'sd':
         AI_speak('시스템 종료를 시도합니다')
-        os.system('')# shutdown -t[to do]
+        os.system('shutdown /s /t 3600') 
         
     elif usr_input == 'foo':
         AI_speak('해당 기능은 아직 준비되지 않았습니다')
         
     else:
+        # AI_speak('입력하신 내용이 usr_input 는 oooo 과 유사합니다') #[to do]
         AI_speak('해당 기능은 아직 준비되지 않았습니다') 
+        
 
 def AI_speak(text):
     # address=r""+os.getcwd()+'\\mp3\\음성인식 준비되었습니다.mp3'
     # address=u""+os.getcwd()+'\\mp3\\음성인식 준비되었습니다.mp3'
     # address=os.getcwd()+'\\mp3\\음성인식 준비되었습니다.mp3'
     address=os.getcwd()+'\\mp3\\'+ text +'.mp3'
+    
+    
     if os.path.exists(address):
         # print('파일이 있어 재생을 시도합니다')
         # os.system('"'+address+'"')#SUCCESS
@@ -198,6 +234,7 @@ def AI_speak(text):
         # time.sleep(length_of_mp3*0.95)
         # time.sleep(length_of_mp3*1.00)
         time.sleep(length_of_mp3*1.05) 
+        
         
     else:
         # print('파일이 없어 생성을 시도합니다')
@@ -222,6 +259,7 @@ def AI_listen():
     m = sr.Microphone() 
     # audio = sr.Microphone() 
     # with sr.Microphone() as source:
+    
     with m as source:
         # AI_speak('듣고 있습니다')
         print('듣고 있습니다')
@@ -289,39 +327,44 @@ nbsp=' '
 #"______________________________________________________  mkr1
 #cls()
 AI_available_cmd_code_list=[
-'1:미세먼지',
-'2:시간',
-'3:네이버 미세먼지',
-'4:공간',
-'5:fake AI 가용명령목록 조회',
-'6:네이버 초미세먼지',
-'7:네이버 초미세먼지',
-'7:네이버 초미세먼지',
-'7:네이버 초미세먼지',
-'7:네이버 초미세먼지',
-'7:네이버 초미세먼지',
-'7:네이버 초미세먼지',
-'7:네이버 초미세먼지',
-'7:네이버 초미세먼지',
-'x:jhppc1',
-'xx:remotedesktop',
+# '0:fake AI 가용명령목록 조회',
+'미세먼지랭킹:미세먼지',
+'네이버 미세먼지:미세먼지',
+'네이버 초미세먼지:초미세먼지',
+'시간:시간',
+'공간:공간',
+'jhppc1:jhppc1',
+'remotedesktop:remote desktop',
+'x:exit',
 'sd:shutdown',
-'taskkill:taskkill',
+'taskkill:task kill',
 'foo:foo',
-'last:remotedesktop'
+'foo:foo',
+'foo:foo',
+'foo:foo',
+'foo:foo',
+'foo:foo',
+'`:batch mode',
+'last:exit'
 ]
-AI_speak('fake AI 시스템이 활성화되었습니다') 
+high_frequency_batch_cmd_routine_pattern_list=[
+# '',
+'ex) 111111:[미세먼지정보]',
+# '',
+''
+]
+                                                                                                                                                            # AI_speak('fake AI 시스템이 활성화되었습니다') 
 #"______________________________________________________  mkr3[what was your childhood nickname? 테스트]
 
 #"______________________________________________________  mkr5
 #cls()
 cnt = 0
-started_time = 0
+started_time = 0 
 while(True):
     if cnt==0:
-        AI_speak('while routine에 접근을 시도합니다')
+        # AI_speak('while routine에 접근을 시도합니다')
         started_time = time.strftime('%Y %m %d %H %M %S') 
-        AI_speak('컴퓨터와 대화할 준비가 되었습니다') 
+                                                                                                                                                                # AI_speak('컴퓨터와 대화할 준비가 되었습니다') 
         cnt+=1
         #cls()
     recorded_time = time
@@ -330,8 +373,13 @@ while(True):
     mm=recorded_time.strftime('%M')
     ss=recorded_time.strftime('%S')
     
+    print('가용명령코드목록')
+    CRLF()
     AI_print(AI_available_cmd_code_list)
-    AI_speak('원하시는 명령코드를 입력해 주세요')
+    CRLF()
+    print('일괄명령패턴목록')
+    CRLF()
+    AI_print(high_frequency_batch_cmd_routine_pattern_list)
     # AI_cmd_code='sd'
     # AI_cmd_code='taskkill'
     # AI_cmd_code='1'
@@ -344,19 +392,21 @@ while(True):
     #cls() 
                    
     
+                                                                                                                                                # AI_speak('원하시는 명령코드를 입력해 주세요')  # 이걸 멀티 쓰레드로 만들어서  하나의 쓰레드로 5초 카운트 후 AI_speak('원하시는 명령코드를 입력해 주세요')를 수행후 쓰레드 종료 AI_speak('fake AI의 가용명령목록 조회를 원하시면 백팁을 눌러주세요')
     # usr_input = input("원하시는 명령코드를 입력해 주세요 >>>")
-    usr_input = input(">>>>>>>>")
+    CRLF()
+    usr_input = input(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>").strip()
+    CRLF()
     
     #cls()
     for i in range(0,len(AI_available_cmd_code_list)-1):
         if usr_input in AI_available_cmd_code_list[i].split(':')[0]:
-            AI_speak(AI_available_cmd_code_list[i].split(':')[-1]+'에 대한 명령코드가 입력되었습니다')
-            # time.sleep(5)
-            time.sleep(4) 
+            if usr_input!='' and usr_input!='`':
+                AI_speak(AI_available_cmd_code_list[i].split(':')[0]+'에 대한 명령코드가 입력되었습니다')
             
     
     #cls()
-    AI_answer()
+    AI_answer(usr_input)
     
     if ss=='30':
         # 분마다 말하기
@@ -422,11 +472,12 @@ taskkill('alsong.exe')
 #[DONE]
 #1. 스케줄작업 수행기능
 #2. 미세먼지 웹스크래핑 기능
+#3. 1시간뒤 시스템 종료 예약 기능
 #[ING]
 #[TO DO]
 #파이썬 멀티쓰레드로 만들자 정확히는 더블스레드로 하나의 싱글스레드는 스케쥴작업을 계속 수행을하고 다른 하나의 싱글쓰레드는 사용자로부터 sd 입력받으면 shutdown 할 수 있도록 하자
     # AI_listen()
-    # AI_answer()
+    # AI_answer(usr_input)
     # usr_input = input("원하시는 명령코드를 입력해 주세요 >>> ")
 #이걸 js + node.js  p5.speech.js   이렇게 합하면 될것 같은디.  일단 해보자.
         

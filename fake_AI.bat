@@ -24,8 +24,14 @@ REM pip install PyAudio
 REM pip install selenium
 REM pip install psutil
 REM pip install mutagen
+@echo off
 echo "______________________________________________________________ python 실행
 cls
 py fake_AI.py
-pause
 REM timeout 10
+
+
+
+
+
+REM pause
