@@ -174,17 +174,19 @@ def AI_answer(usr_input):
         print('batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s ')
         batch_mode_input=input('>>>')
         batch_mode_input=list(batch_mode_input)                         # batch_mode_input = [3,2,1]
-        AI_speak('가용명령의 개수는' + str(len(AI_available_cmd_code_list)) +'개 이고')
         AI_speak('배치명령의 개수는' + str(len(batch_mode_input)) +'개 입니다')
         for i in range(0,len(batch_mode_input)):                      # i=0
             usr_input=AI_available_cmd_code_list[int(batch_mode_input[i])-1].split(':')[0] #usr_input=AI_available_cmd_code_list[2].split(':')[0] 
             AI_speak(str(i+1)+'번째 코드를 실행시도합니다')
             AI_answer(usr_input)
-        print('batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s ')
+        print('batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e ')
         
                     
     elif usr_input == 'x':
         exit()
+                    
+    elif usr_input == '가용명령개수':
+        AI_speak('가용명령의 개수는' + str(len(AI_available_cmd_code_list)) +'개 이고')
         
     elif usr_input == '':
         AI_speak('아무것도 입력되지 않았습니다')
@@ -302,8 +304,10 @@ def AI_run(target_str):
         # os.system('call "'+os.getcwd()+'/mp3/'+ text +'.mp3"')  #동기처리방식[실패]
 
 def AI_print(target_list):
+    cnt=1
     for target in target_list:
-        print(target)
+        print(target+cnt)
+        cnt+=1
 
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>time initialization
@@ -324,7 +328,7 @@ customTime2=time.strftime('%Y-%m-%d %H:%M')
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>dictionary")
 #cls()
 nbsp=' '
-#"______________________________________________________  mkr1
+#"______________________________________________________  mkr [가용명령목록]
 #cls()
 AI_available_cmd_code_list=[
 # '0:fake AI 가용명령목록 조회',
@@ -338,11 +342,13 @@ AI_available_cmd_code_list=[
 'x:exit',
 'sd:shutdown',
 'taskkill:task kill',
-'foo:foo',
-'foo:foo',
-'foo:foo',
-'foo:foo',
-'foo:foo',
+'가용명령개수:가용명령개수',
+'_________:_________',
+'_________:_________',
+'_________:_________',
+'_________:_________',
+'_________:_________',
+'_________:_________',
 'foo:foo',
 '`:batch mode',
 'last:exit'

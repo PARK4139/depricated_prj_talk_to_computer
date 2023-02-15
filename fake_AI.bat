@@ -28,10 +28,34 @@ REM pip install mutagen
 echo "______________________________________________________________ python 실행
 cls
 py fake_AI.py
+REM echo "______________________________________________________________ debugging mode 
 REM timeout 10
-
-
-
-
-
 REM pause
+
+echo " ______________________________________________________________ variable defination
+chcp 65001
+@echo off
+setlocal
+for /f "delims=" %%i in ('Powershell.exe get-date -Format 'yyyy MM dd HH mm ss'') do set yyyyMMddHHmmss=%%i
+cls
+echo " ______________________________________________________________ add
+git add *  
+echo " ______________________________________________________________ commit
+git commit -m "%yyyyMMddHHmmss%" 
+echo " ______________________________________________________________ push
+git push -u origin main  
+echo " ______________________________________________________________ status
+:: git status | find "clean"
+git status  
+cls
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> add
+git add * | find "clean"
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> commit
+git commit -m "%yyyyMMddHHmmss%" | find "clean"
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> push
+git push -u origin main | find "100%"
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> status
+:: git status | find "clean"
+git status | find "clean"
+REM pause
+timeout 2
