@@ -178,7 +178,7 @@ def AI_answer(usr_input):
                 usr_input=AI_available_cmd_code_list[int(batch_mode_input)-1].split(':')[0]
                 AI_answer(usr_input)
             elif batch_mode_input =='x':
-                break
+                break #to do ..... 하나의 루프만 빠져나오도록 ...
             else:
                 AI_speak('single mode 에서는 1자리만 입력하실 수 있습니다.')
                 
@@ -191,7 +191,7 @@ def AI_answer(usr_input):
         while(True):
             batch_mode_input=input('>>>')
             if batch_mode_input=='x':
-                break
+                break #to do ..... 하나의 루프만 빠져나오도록 ...
             batch_mode_input=list(batch_mode_input)                         # batch_mode_input = [3,2,1]
             AI_speak('입력된 배치명령의 개수는' + str(len(batch_mode_input)+1) +'개 입니다')
             for i in range(0,len(batch_mode_input)):                      # i=0
@@ -390,6 +390,7 @@ while(True):
         # AI_speak('while routine에 접근을 시도합니다')
         started_time = time.strftime('%Y %m %d %H %M %S') 
         AI_speak('컴퓨터와 대화할 준비가 되었습니다') 
+        taskkill('Alsong.exe')
         cnt+=1
         cls()
     recorded_time = time
