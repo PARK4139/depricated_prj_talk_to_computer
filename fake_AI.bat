@@ -27,7 +27,8 @@ REM pip install mutagen
 @echo off
 echo "______________________________________________________________ python 실행
 cls
-py fake_AI.py
+REM py fake_AI.py
+start /max py fake_AI.py
 REM echo "______________________________________________________________ debugging mode 
 REM timeout 10
 REM pause
@@ -59,3 +60,4 @@ echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 git status | find "clean"
 REM pause
 timeout 2
+exit
