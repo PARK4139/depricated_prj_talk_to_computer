@@ -1,3 +1,6 @@
+echo " ______________________________________________________________ variable defination
+setlocal
+for /f "delims=" %%i in ('Powershell.exe get-date -Format 'yyyy MM dd HH mm ss'') do set yyyyMMddHHmmss=%%i
 REM echo "______________________________________________________________ pip 환경변수 영구추가
 REM set PATH_THAT_I_WANT_TO_ADD=C:\Users\WIN10PROPC3\AppData\Local\Programs\Python\Python311\Scripts
 REM setx path "%path%;%PATH_THAT_I_WANT_TO_ADD%;"
@@ -24,6 +27,7 @@ REM pip install PyAudio
 REM pip install selenium
 REM pip install psutil
 REM pip install mutagen
+chcp 65001
 @echo off
 echo "______________________________________________________________ python 실행
 cls
@@ -32,31 +36,32 @@ REM echo "______________________________________________________________ debuggi
 REM timeout 10
 REM pause
 
-echo " ______________________________________________________________ variable defination
-chcp 65001
-@echo off
-setlocal
-for /f "delims=" %%i in ('Powershell.exe get-date -Format 'yyyy MM dd HH mm ss'') do set yyyyMMddHHmmss=%%i
-cls
-echo " ______________________________________________________________ add
-git add *  
-echo " ______________________________________________________________ commit
-git commit -m "%yyyyMMddHHmmss%" 
-echo " ______________________________________________________________ push
-git push -u origin main  
-echo " ______________________________________________________________ status
-:: git status | find "clean"
-git status  
-cls
-echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> add
-git add * | find "clean"
-echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> commit
-git commit -m "%yyyyMMddHHmmss%" | find "clean"
-echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> push
-git push -u origin main | find "100%"
-echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> status
-:: git status | find "clean"
-git status | find "clean"
+REM echo " ______________________________________________________________ add
+REM git add *  
+REM echo " ______________________________________________________________ commit
+REM git commit -m "%yyyyMMddHHmmss%" 
+REM echo " ______________________________________________________________ push
+REM git push -u origin main  
+REM echo " ______________________________________________________________ status
+REM :: git status | find "clean"
+REM git status  
+REM cls
+REM echo " ______________________________________________________________ add
+REM git add * | find "clean"
+REM echo " ______________________________________________________________ commit
+REM git commit -m "%yyyyMMddHHmmss%" | find "clean"
+REM echo " ______________________________________________________________ push
+REM git push -u origin main | find "100%"
+REM echo " ______________________________________________________________ status
+REM :: git status | find "clean"
+REM git status | find "clean"
+
+
+
+
+
+
+
 REM pause
 timeout 2
 exit
