@@ -170,6 +170,21 @@ def AI_answer(usr_input):
         AI_speak("조회되었습니다")
         
     elif usr_input == '`':
+        AI_speak('single mode 가 시작되었습니다')
+        print('single mode s single mode s single mode s single mode s single mode s single mode s single mode s single mode s single mode s ')
+        while(True):
+            batch_mode_input=input('>>>')
+            if len(batch_mode_input)==1:
+                usr_input=AI_available_cmd_code_list[int(batch_mode_input)-1].split(':')[0]
+                AI_answer(usr_input)
+                
+            else:
+                AI_speak('single mode 에서는 1자리만 입력하실 수 있습니다.')
+                
+        print('eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e ')
+        
+        
+    elif usr_input == '``':
         AI_speak('batch mode 가 시작되었습니다')
         print('batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s ')
         batch_mode_input=input('>>>')
@@ -352,7 +367,8 @@ AI_available_cmd_code_list=[
 '_________:_________',
 '_________:_________',
 'foo:foo',
-'`:batch mode',
+'`:single mode',
+'``:batch mode',
 ]
 high_frequency_batch_cmd_routine_pattern_list=[
 # '',
