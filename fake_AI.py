@@ -1,32 +1,3 @@
-REM echo "______________________________________________________________ pip 환경변수 영구추가
-REM set PATH_THAT_I_WANT_TO_ADD=C:\Users\WIN10PROPC3\AppData\Local\Programs\Python\Python311\Scripts
-REM setx path "%path%;%PATH_THAT_I_WANT_TO_ADD%;"
-REM echo "______________________________________________________________ project_py 이동
-REM cd C:\Users\WIN10PROPC3
-REM mkdir prjs
-REM cd C:\Users\WIN10PROPC3\prjs
-REM echo "______________________________________________________________ project_TTS_STT 이동
-REM mkdir project_TTS_STT
-REM cd project_TTS_STT
-REM echo "______________________________________________________________ pyVirtualEnvironment1 활성화
-REM python -m venv pyVirtualEnvironment1
-REM .\pyVirtualEnvironment1\Scripts\activate
-REM echo "______________________________________________________________ library 설치
-REM pip list
-REM pip install requests               
-REM pip install beautifulsoup4    	   
-REM pip install gTTS
-REM pip install playsound
-REM pip install gTTS
-REM pip install playsound
-REM pip install SpeechRecognition
-REM pip install PyAudio
-REM pip install selenium
-REM pip install psutil
-REM pip install mutagen
-echo "______________________________________________________________ python 실행
-cls
-py
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>module import
 # -*- coding: utf-8 -*-
 import os
@@ -129,11 +100,11 @@ def readFile(fileAddress):
 def listen(recognizer, audio): 
     pass
 
-def AI_answer(input_text):
-    if input_text=='몇 시야':
-        now = time
-        yyyyMMddHHmmss=now.strftime('%Y %m %d %H %M %S')
-    pass
+# def AI_answer(input_text):
+    # if input_text=='몇 시야':
+        # now = time
+        # yyyyMMddHHmmss=now.strftime('%Y %m %d %H %M %S')
+    # pass
 
 def AI_answer():
     if usr_input == '1':
@@ -163,16 +134,31 @@ def AI_answer():
         copied_html_selector = '#main_pack > section.sc_new._atmospheric_environment > div > div.api_cs_wrap > div > div:nth-child(3) > div.main_box > div.detail_box'
         elements = soup.select(copied_html_selector)
         for index, element in enumerate(elements, 1):
-            print("{} 번째 text: {}".format(index, element.text))
-             
-        lines = "네이버 미세먼지정보\n"+ element.text.replace("관측지점 현재 오전예보 오후예보","",1).replace("지역별 미세먼지 정보","") .strip().replace("서울","\n서울").replace("경기","\n경기").replace("인천","\n인천").replace("강원","\n강원").replace("세종","\n세종").replace("충북","\n충북").replace("충남","\n충남").replace("전남","\n전남").replace("전북","\n전북").replace("광주","\n광주").replace("제주","\n제주").replace("대전","\n대전").replace("경북","\n경북").replace("경남","\n경남").replace("대구","\n대구").replace("울산","\n울산").replace("부산","\n부산").replace("     "," ").replace("\n ","\n").replace("  "," ").replace("  "," ")
-        cls()
-        print(lines.replace("관측지점 현재 오전예보 오후예보","관측지점 현재 오전예보 오후예보\n"))
-        AI_speak('웹 크롤링된 네이버 미세먼지 정보를 말씀드립니다')
-        # AI_speak('웹 크롤링된 네이버 미세먼지 정보 접근을 시도합니다.')
-        for line in range(0,len(lines.split('\n'))):
-            AI_speak(lines.split('\n')[line])
+            # print("{} 번째 text: {}".format(index, element.text))
+            print("do something....")
         
+        lines = "네이버 미세먼지정보\n"+ element.text.replace("관측지점 현재 오전예보 오후예보","",1).replace("지역별 미세먼지 정보","") .strip().replace("서울","\n서울").replace("경기","\n경기").replace("인천","\n인천").replace("강원","\n강원").replace("세종","\n세종").replace("충북","\n충북").replace("충남","\n충남").replace("전남","\n전남").replace("전북","\n전북").replace("광주","\n광주").replace("제주","\n제주").replace("대전","\n대전").replace("경북","\n경북").replace("경남","\n경남").replace("대구","\n대구").replace("울산","\n울산").replace("부산","\n부산").replace("     "," ").replace("\n ","\n").replace("  "," ").replace("  "," ")
+        #cls()
+        print(lines.replace("관측지점 현재 오전예보 오후예보","관측지점 현재 오전예보 오후예보\n"))
+        # AI_speak('웹 크롤링된 네이버 미세먼지 정보 접근을 시도합니다.')
+        # AI_speak('웹 크롤링된 네이버 미세먼지 정보를 말씀드립니다')
+        # AI_speak('네이버 미세먼지 정보입니다')
+        AI_speak('다음은 네이버 미세먼지 정보입니다')
+        AI_speak('관측지점 현재 오전예보 오후예보')
+        AI_speak('순서입니다')
+        
+        # for line in range(0,len(lines.split('\n'))):
+            # AI_speak(lines.split('\n')[line])
+            
+        # for line in range(0,len(lines.split(' '))):
+            # AI_speak(lines.split(' ')[line].strip())
+            
+        for line in range(0,len(lines.split('\n'))):
+            if lines.split('\n').contains('서울') or lines.split('\n').contains('경기'):
+                for words in range(0,len(lines.split('\n')[line].split('\n'))):
+                    AI_speak(lines.split('\n')[line].split('\n')[words])
+                    
+                    
     elif usr_input == 'x':
         jhppc1 = 'https://remotedesktop.google.com/access/session/b797cd99-b738-f4db-9b38-9a2e25a57a47'
         AI_run(jhppc1)
@@ -283,7 +269,7 @@ def AI_print(target_list):
 
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>time initialization
-cls()
+#cls()
 localtime = time.localtime()
 yyyy=time.localtime().tm_year
 MM=time.localtime().tm_mon
@@ -298,10 +284,10 @@ yyyyMMddHHmmss=time.strftime('%Y %m %d %H %M %S')
 customTime1=time.strftime('%Y-%m-%d %H:%M:%S')
 customTime2=time.strftime('%Y-%m-%d %H:%M') 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>dictionary")
-cls()
+#cls()
 nbsp=' '
 #"______________________________________________________  mkr1
-cls()
+#cls()
 AI_available_cmd_code_list=[
 '1:미세먼지',
 '2:시간',
@@ -324,69 +310,53 @@ AI_available_cmd_code_list=[
 'foo:foo',
 'last:remotedesktop'
 ]
-AI_speak('fake AI 시스템이 활성화되었습니다')
-AI_speak('컴퓨터와 대화할 준비가 되었습니다')
-#"______________________________________________________  mkr2
-cls()
-AI_print(AI_available_cmd_code_list)
-AI_speak('원하시는 명령코드를 입력해 주세요')
-# AI_cmd_code='sd'
-# AI_cmd_code='taskkill'
-# AI_cmd_code='1'
-# AI_cmd_code='2'
-AI_cmd_code='3'
-# AI_cmd_code='4'
-usr_input=AI_cmd_code
-
-
+AI_speak('fake AI 시스템이 활성화되었습니다') 
 #"______________________________________________________  mkr3[what was your childhood nickname? 테스트]
-cls()
-# cnt=0
-# while(True):
-    # usr_input = input("what was your childhood nickname? ")
-    # if usr_input=='monkey':
-        # print('')
-        # print('!!!!!!this is correct answer!!!!!')
-        # print('bye~!')
-        # print('')
-        # break
-            
-    # elif cnt%10==0 and cnt!=0:
-        # print('this is correct answer')
-        # print('')
-        # print('hint! >>> This is a species of primate')
-        # print('')
-        # cnt+=1
-            
-    # else:
-        # print('this is wrong answer, try again')
-        # cnt+=1
-            
-#"______________________________________________________  mkr3
-cls()
-for i in range(0,len(AI_available_cmd_code_list)-1):
-    if usr_input in AI_available_cmd_code_list[i].split(':')[0]:
-        AI_speak(AI_available_cmd_code_list[i].split(':')[-1]+'에 대한 명령코드가 입력되었습니다')
-        # time.sleep(5)
-        time.sleep(4)
-        break
 
-#"______________________________________________________  mkr4
-cls()
-AI_answer()
 #"______________________________________________________  mkr5
-cls()
+#cls()
 cnt = 0
+started_time = 0
 while(True):
     if cnt==0:
         AI_speak('while routine에 접근을 시도합니다')
+        started_time = time.strftime('%Y %m %d %H %M %S') 
+        AI_speak('컴퓨터와 대화할 준비가 되었습니다') 
         cnt+=1
+        #cls()
+    recorded_time = time
+    yyyyMMddHHmmss=recorded_time.strftime('%Y %m %d %H %M %S')
+    HH=recorded_time.strftime('%H')
+    mm=recorded_time.strftime('%M')
+    ss=recorded_time.strftime('%S')
     
-    now = time
-    yyyyMMddHHmmss=now.strftime('%Y %m %d %H %M %S')
-    HH=now.strftime('%H')
-    mm=now.strftime('%M')
-    ss=now.strftime('%S')
+    AI_print(AI_available_cmd_code_list)
+    AI_speak('원하시는 명령코드를 입력해 주세요')
+    # AI_cmd_code='sd'
+    # AI_cmd_code='taskkill'
+    # AI_cmd_code='1'
+    # AI_cmd_code='2'
+    # AI_cmd_code='3'
+    # AI_cmd_code='4'
+    # usr_input=AI_cmd_code
+    
+     
+    #cls() 
+                   
+    
+    # usr_input = input("원하시는 명령코드를 입력해 주세요 >>>")
+    usr_input = input(">>>>>>>>")
+    
+    #cls()
+    for i in range(0,len(AI_available_cmd_code_list)-1):
+        if usr_input in AI_available_cmd_code_list[i].split(':')[0]:
+            AI_speak(AI_available_cmd_code_list[i].split(':')[-1]+'에 대한 명령코드가 입력되었습니다')
+            # time.sleep(5)
+            time.sleep(4) 
+            
+    
+    #cls()
+    AI_answer()
     
     if ss=='30':
         # 분마다 말하기
@@ -400,7 +370,7 @@ while(True):
             # AI_speak(HH+'시')
             # AI_speak(mm+'분')
             # AI_speak('입니다')
-        if int(mm)%15==0:
+        if 9<=int(HH) and int(HH)<=23 and int(mm)%15==0:
             AI_speak('현재 시간은')
             AI_speak(HH+'시')
             AI_speak(mm+'분')
@@ -443,11 +413,12 @@ while(True):
             AI_speak('12시 10분 전입니다')
             AI_speak('주무실 것을 추천드립니다')
 		
-    
+time.sleep(60*3)
+taskkill('alsong.exe')
 
 
 
-# cls()
+# #cls()
 #[DONE]
 #1. 스케줄작업 수행기능
 #2. 미세먼지 웹스크래핑 기능
