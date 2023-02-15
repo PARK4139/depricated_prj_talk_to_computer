@@ -108,7 +108,7 @@ def listen(recognizer, audio):
         # now = time
         # yyyyMMddHHmmss=now.strftime('%Y %m %d %H %M %S')
     # pass
-
+#"______________________________________________________  mkr [AI_answer]
 def AI_answer(usr_input):
     if usr_input == '미세먼지랭킹':
         # AI_speak('미세먼지랭킹 날씨 정보를 디스플레이 시도합니다')
@@ -208,9 +208,14 @@ def AI_answer(usr_input):
         AI_speak('가용명령의 개수는' + str(len(AI_available_cmd_code_list)) +'개 이고')
         
     elif usr_input == '식물조언':
-        AI_speak('식물에게 물샤워를 줄시간입니다. 물샤워를 시켜주세요')
-        AI_speak('오늘은 식물에게 햇빛샤워를 시켜주는날입니다 하늘이가 없을때 샤워를 시켜주세요')
-        AI_speak('하트축전에게 빠르게 식물등빛을 주세요 이러다 죽는습니다 서둘러 등빛을 주세요')
+        AI_speak('식물에게 물샤워를 줄시간입니다')
+        AI_speak('물샤워를 시켜주세요')
+        AI_speak('오늘은 식물에게 햇빛샤워를 시켜주는날입니다')
+        AI_speak('하늘이가 없을때 샤워를 시켜주세요')
+        AI_speak('하트축전에게 빠르게 식물등빛을 주세요')
+        AI_speak('이러다 죽습니다 서둘러 등빛을 주세요')
+        # AI_speak('이러다 죽습니다')
+        # AI_speak('서둘러 등빛을 주세요')
         
     elif usr_input == '':
         AI_speak('아무것도 입력되지 않았습니다')
