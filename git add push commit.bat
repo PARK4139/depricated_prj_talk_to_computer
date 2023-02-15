@@ -24,4 +24,4 @@ echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 :: git status | find "clean"
 git status | find "clean"
 REM pause
-timeout 2
+timeout 1
