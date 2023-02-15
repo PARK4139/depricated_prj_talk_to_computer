@@ -207,9 +207,15 @@ def AI_answer(usr_input):
     elif usr_input == '가용명령개수':
         AI_speak('가용명령의 개수는' + str(len(AI_available_cmd_code_list)) +'개 이고')
         
+    elif usr_input == '식물조언':
+        AI_speak('식물에게 물샤워를 줄시간입니다. 물샤워를 시켜주세요')
+        AI_speak('오늘은 식물에게 햇빛샤워를 시켜주는날입니다 하늘이가 없을때 샤워를 시켜주세요')
+        AI_speak('하트축전에게 빠르게 식물등빛을 주세요 이러다 죽는습니다 서둘러 등빛을 주세요')
+        
     elif usr_input == '':
         AI_speak('아무것도 입력되지 않았습니다')
         AI_speak('명령코드를 입력해주세요')
+        AI_speak('_______')
         
                     
     elif usr_input == 'jhppc1':
@@ -364,7 +370,7 @@ AI_available_cmd_code_list=[
 'sd:shutdown',
 'taskkill:task kill',
 '가용명령개수:가용명령개수',
-'_________:_________',
+'식물조언:식물조언',
 '_________:_________',
 '_________:_________',
 '_________:_________',
