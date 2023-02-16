@@ -24,5 +24,5 @@ echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 :: git status | find "clean"
 git status | find "clean"
 REM pause
-py TTS.py '프로젝트 커밋시도를 완료했습니다'
+py TTS.py "프로젝트 커밋시도를 완료했습니다"
 timeout 1
