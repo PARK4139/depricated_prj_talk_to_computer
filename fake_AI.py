@@ -72,7 +72,7 @@ def taskkill(target_str):
                 for child in parent.children(recursive=True):  
                     child.kill()
                 parent.kill()
-                print(target_str+' 프로세스 죽이기를 시도했습니다')
+                # print(target_str+' 와 자식 프로세스 죽이기를 시도했습니다')
             
         except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):   #예외처리
             pass
@@ -142,13 +142,14 @@ def AI_answer(usr_input):
         
         lines = "네이버 미세먼지정보\n"+ element.text.replace("관측지점 현재 오전예보 오후예보","",1).replace("지역별 미세먼지 정보","") .strip().replace("서울","\n서울").replace("경기","\n경기").replace("인천","\n인천").replace("강원","\n강원").replace("세종","\n세종").replace("충북","\n충북").replace("충남","\n충남").replace("전남","\n전남").replace("전북","\n전북").replace("광주","\n광주").replace("제주","\n제주").replace("대전","\n대전").replace("경북","\n경북").replace("경남","\n경남").replace("대구","\n대구").replace("울산","\n울산").replace("부산","\n부산").replace("     "," ").replace("\n ","\n").replace("  "," ").replace("  "," ")
         #cls()
-        print(lines.replace("관측지점 현재 오전예보 오후예보","관측지점 현재 오전예보 오후예보\n"))
+        # print(lines.replace("관측지점 현재 오전예보 오후예보","관측지점 현재 오전예보 오후예보\n"))
         # AI_speak('웹 크롤링된 네이버 미세먼지 정보 접근을 시도합니다.')
         # AI_speak('네이버 미세먼지 정보입니다')
         # AI_speak('다음은 네이버 미세먼지 정보입니다')
         # AI_speak('관측지점 현재 오전예보 오후예보')
         # AI_speak('웹 크롤링된 네이버 미세먼지 정보를 말씀드립니다')
-        AI_speak('웹 크롤링된 서울과 경기도에 대한 네이버 미세먼지 정보를 말씀드립니다')
+        AI_speak('웹크롤링이 완료되었습니다')
+        AI_speak('서울과 경기도에 대한 정보를 말씀드립니다')
         
         # for line in range(0,len(lines.split('\n'))):
             # AI_speak(lines.split('\n')[line])
@@ -164,7 +165,6 @@ def AI_answer(usr_input):
                 for i in lines.split('\n')[line].split('\n'):
                     AI_speak(i)
                     
-                    
     elif usr_input == '5':
         AI_print(AI_available_cmd_code_list)
         AI_speak("조회되었습니다")
@@ -174,16 +174,19 @@ def AI_answer(usr_input):
         print('single mode s single mode s single mode s single mode s single mode s single mode s single mode s single mode s single mode s ')
         while(True):
             batch_mode_input=input('>>>')
+            if batch_mode_input =='x':
+                print('eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e ')
+                AI_speak('single mode를 종료합니다')
+                break #to do ..... 하나의 루프만 빠져나오도록 ...
             if len(batch_mode_input)==1:
                 usr_input=AI_available_cmd_code_list[int(batch_mode_input)-1].split(':')[0]
                 AI_answer(usr_input)
-            elif batch_mode_input =='x':
-                break #to do ..... 하나의 루프만 빠져나오도록 ...
+            if batch_mode_input =='':
+                AI_speak('아무것도 입력되지 않았습니다')
+            if batch_mode_input =='`':
+                AI_speak('백팁은 single mode에서 입력하실 수 없습니다.')
             else:
-                AI_speak('single mode 에서는 1자리만 입력하실 수 있습니다.')
-                
-        print('eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e ')
-        
+                AI_speak('single mode 에서는 1자리만 입력하실 수 있습니다.') 
         
     elif usr_input == '``':
         AI_speak('batch mode 가 시작되었습니다')
@@ -191,17 +194,24 @@ def AI_answer(usr_input):
         while(True):
             batch_mode_input=input('>>>')
             if batch_mode_input=='x':
+                print('batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e ')
+                AI_speak('single mode를 종료합니다')
                 break #to do ..... 하나의 루프만 빠져나오도록 ...
             batch_mode_input=list(batch_mode_input)                         # batch_mode_input = [3,2,1]
-            AI_speak('입력된 배치명령의 개수는' + str(len(batch_mode_input)+1) +'개 입니다')
+            # AI_speak('입력된 배치명령의 개수는' + str(len(batch_mode_input)+1) +'개 입니다')
+            if batch_mode_input == '':
+                AI_speak('아무것도 입력되지 않았습니다')
+                AI_speak('명령코드를 입력해주세요')
+                AI_speak('_______')
+            else:
+                AI_speak('입력된 배치명령의 개수는' + str(len(batch_mode_input)) +'개 입니다')
             for i in range(0,len(batch_mode_input)):                      # i=0
                 usr_input=AI_available_cmd_code_list[int(batch_mode_input[i])-1].split(':')[0] #usr_input=AI_available_cmd_code_list[2].split(':')[0] 
                 AI_speak(str(i+1)+'번째 코드를 실행시도합니다')
                 AI_answer(usr_input)
-        print('batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e ')
         
-                    
     elif usr_input == 'x':
+        AI_speak('fake AI 를 종료합니다')
         exit()
                     
     elif usr_input == '가용명령개수':
@@ -286,7 +296,9 @@ def AI_speak(text):
         # time.sleep(length_of_mp3*0.95)
         # time.sleep(length_of_mp3*1.00)
         time.sleep(length_of_mp3*1.05)
-
+    
+    taskkill('ALSong.exe')
+    
  
 def AI_listen():
     r = sr.Recognizer()
@@ -338,7 +350,9 @@ def AI_run(target_str):
 def AI_print(target_list):
     cnt=1
     for target in target_list:
-        print(str(cnt)+nbsp+':'+nbsp+target)
+        # print('+str(cnt)+nbsp+':'+nbsp+target)
+        # print('         '+str(cnt)+nbsp+':'+nbsp+target)
+        print('                                             '+str(cnt)+nbsp+':'+nbsp+target)
         cnt+=1
 
 
@@ -364,6 +378,8 @@ nbsp=' '
 #cls()
 AI_available_cmd_code_list=[
 # '0:fake AI 가용명령목록 조회',
+'`:single mode',
+'``:batch mode',
 '미세먼지랭킹:미세먼지',
 '네이버 미세먼지:미세먼지',
 '네이버 초미세먼지:초미세먼지',
@@ -382,8 +398,6 @@ AI_available_cmd_code_list=[
 '_________:_________',
 '_________:_________',
 'foo:foo',
-'`:single mode',
-'``:batch mode',
 ]
 high_frequency_batch_cmd_routine_pattern_list=[
 # '',
@@ -401,7 +415,7 @@ while(True):
         # AI_speak('while routine에 접근을 시도합니다')
         started_time = time.strftime('%Y %m %d %H %M %S') 
         AI_speak('컴퓨터와 대화할 준비가 되었습니다') 
-        taskkill('Alsong.exe')
+        taskkill('ALSong.exe')
         cnt+=1
         cls()
     recorded_time = time
@@ -409,12 +423,21 @@ while(True):
     HH=recorded_time.strftime('%H')
     mm=recorded_time.strftime('%M')
     ss=recorded_time.strftime('%S')
-    
-    print('가용명령코드목록')
+    cls()
+    CRLF()
+    CRLF()
+    CRLF()
+    CRLF()
+    CRLF()
+    CRLF()
+    CRLF()
+    # print(' '+'가용명령코드목록')
+    print('                                     '+'가용명령코드목록')
     CRLF()
     AI_print(AI_available_cmd_code_list)
     CRLF()
-    print('일괄명령패턴목록')
+    # print(' '+'일괄명령패턴목록')
+    print('                                     '+'일괄명령패턴목록')
     CRLF()
     AI_print(high_frequency_batch_cmd_routine_pattern_list)
     # AI_cmd_code='sd'
@@ -424,22 +447,19 @@ while(True):
     # AI_cmd_code='3'
     # AI_cmd_code='4'
     # usr_input=AI_cmd_code
-    
-     
-    #cls() 
-                   
-    
-                                                                                                                                                # AI_speak('원하시는 명령코드를 입력해 주세요')  # 이걸 멀티 쓰레드로 만들어서  하나의 쓰레드로 5초 카운트 후 AI_speak('원하시는 명령코드를 입력해 주세요')를 수행후 쓰레드 종료 AI_speak('fake AI의 가용명령목록 조회를 원하시면 백팁을 눌러주세요')
+    #cls()         
+                                                                                                                                                    # AI_speak('원하시는 명령코드를 입력해 주세요')  # 이걸 멀티 쓰레드로 만들어서  하나의 쓰레드로 5초 카운트 후 AI_speak('원하시는 명령코드를 입력해 주세요')를 수행후 쓰레드 종료 AI_speak('fake AI의 가용명령목록 조회를 원하시면 백팁을 눌러주세요')
     # usr_input = input("원하시는 명령코드를 입력해 주세요 >>>")
     CRLF()
-    usr_input = input(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>").strip()
+    usr_input = input("                                                                                                ").strip()
     CRLF()
     
     #cls()
     for i in range(0,len(AI_available_cmd_code_list)-1):
         if usr_input in AI_available_cmd_code_list[i].split(':')[0]:
             if usr_input!='' and usr_input!='`':
-                AI_speak(AI_available_cmd_code_list[i].split(':')[0]+'에 대한 명령코드가 입력되었습니다')
+                # AI_speak(AI_available_cmd_code_list[i].split(':')[0]+'에 대한 명령코드가 입력되었습니다')
+                pass
             
     
     #cls()
@@ -490,7 +510,7 @@ while(True):
         if HH=='09' and mm=='00':    
             AI_speak('음악을 종료합니다')
             # taskkill('Music.UI.exe')
-            # taskkill('alsong.exe')
+            # taskkill('ALSong.exe')
             # time.sleep(10)
         if HH=='11' and mm=='30':
             AI_speak('점심시간입니다')
@@ -501,8 +521,7 @@ while(True):
             AI_speak('주무실 것을 추천드립니다')
 		
 time.sleep(60*3)
-taskkill('alsong.exe')
-
+taskkill('ALSong.exe')
 
 
 # #cls()
