@@ -178,16 +178,17 @@ def AI_answer(usr_input):
                 print('eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e ')
                 AI_speak('single mode를 종료합니다')
                 break #to do ..... 하나의 루프만 빠져나오도록 ...
-            if len(batch_mode_input)==1:
+            elif len(batch_mode_input)==1:
                 usr_input=AI_available_cmd_code_list[int(batch_mode_input)-1].split(':')[0]
                 AI_answer(usr_input)
-            if batch_mode_input =='':
+            elif batch_mode_input =='':
                 AI_speak('아무것도 입력되지 않았습니다')
-            if batch_mode_input =='`':
+            elif batch_mode_input =='`':
                 AI_speak('백팁은 single mode에서 입력하실 수 없습니다.')
             else:
                 AI_speak('single mode 에서는 1자리만 입력하실 수 있습니다.') 
         
+    
     elif usr_input == '``':
         AI_speak('batch mode 가 시작되었습니다')
         print('batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s ')
@@ -195,9 +196,9 @@ def AI_answer(usr_input):
             batch_mode_input=input('>>>')
             if batch_mode_input=='x':
                 print('batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e ')
-                AI_speak('single mode를 종료합니다')
+                AI_speak('batch mode를 종료합니다')
                 break #to do ..... 하나의 루프만 빠져나오도록 ...
-            batch_mode_input=list(batch_mode_input)                         # batch_mode_input = [3,2,1]
+            # batch_mode_input=list(batch_mode_input)                         # batch_mode_input = [3,2,1]
             # AI_speak('입력된 배치명령의 개수는' + str(len(batch_mode_input)+1) +'개 입니다')
             if batch_mode_input == '':
                 AI_speak('아무것도 입력되지 않았습니다')
@@ -296,10 +297,11 @@ def AI_speak(text):
         # time.sleep(length_of_mp3*0.95)
         # time.sleep(length_of_mp3*1.00)
         time.sleep(length_of_mp3*1.05)
-    
-    taskkill('ALSong.exe')
-    
  
+    taskkill('ALSong.exe')
+
+
+
 def AI_listen():
     r = sr.Recognizer()
     m = sr.Microphone() 
@@ -331,7 +333,9 @@ def AI_listen():
     # print(audio)
     # print(listen)
     # print(r)
-    # print(m)
+    # print(m) 
+
+cls()
 
 def AI_run(target_str):
     last_word = target_str.split('.')[-1]
@@ -405,7 +409,7 @@ high_frequency_batch_cmd_routine_pattern_list=[
 # '',
 ''
 ]
-                                                              
+
 #"______________________________________________________  mkr5
 #cls()
 cnt = 0

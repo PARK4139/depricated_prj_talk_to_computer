@@ -63,5 +63,5 @@ REM git status | find "clean"
 
 
 REM pause
-timeout 2
+REM timeout 2
 exit
