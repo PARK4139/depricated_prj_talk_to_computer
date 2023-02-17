@@ -60,6 +60,9 @@ print("______________________________________________________  mkr [function def
 def cls():
     os.system('cls')
 
+def chdir(path):
+    os.chdir(path)
+    print(os.getcwd())
 
 def cwd():
     print(os.getcwd())
