@@ -237,9 +237,11 @@ def AI_respon(usr_input_txt):
             # AI_speak(usr_input_txt+' 가용목록 인덱스가 입력되었습니다.')
             AI_speak('가용목록 인덱스가 입력되었습니다.')
             AI_speak('인덱스에 대한 코드를 수행합니다')
-            # [TO_DO]
-            # usr_input_txt = 'pass'  이 코드는 임시대응코드 입니다 추후에 삭제를 하고 엔덱스에 따라 작동하도록 다른 것으로 대체할 것 입니다.
+            
+            # [TO_DO s]
+            AI_speak('이 다음코드는 더이상 진행되지 않게. 루프의 처음부분으로 돌아가도록 리턴을 시키는 임시대응코드 입니다. 추후에 삭제를 하고. 엔덱스에 따라 작동하도록 다른 것으로 대체할 것 입니다')
             usr_input_txt = 'pass'
+            # [TO_DO e]
 
         else:
            pass
