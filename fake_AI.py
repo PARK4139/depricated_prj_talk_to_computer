@@ -233,8 +233,9 @@ def AI_respon(usr_input_txt):
         print(available_no_cmd_list)
 
         if int(usr_input_txt) in available_no_cmd_list:
-            AI_speak(str(available_no_cmd_list)+' 중에 하나라면 실행 가능한 코드입니다')
-            AI_speak(usr_input_txt+' 가용목록 인덱스가 입력되었습니다.')
+            # AI_speak(str(available_no_cmd_list)+' 중에 하나라면 실행 가능한 코드입니다')
+            # AI_speak(usr_input_txt+' 가용목록 인덱스가 입력되었습니다.')
+            AI_speak('가용목록 인덱스가 입력되었습니다.')
             AI_speak('인덱스에 대한 코드를 수행합니다')
             # [TO_DO]
             # usr_input_txt = 'pass'  이 코드는 임시대응코드 입니다 추후에 삭제를 하고 엔덱스에 따라 작동하도록 다른 것으로 대체할 것 입니다.
