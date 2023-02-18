@@ -225,43 +225,6 @@ def AI_Crawlweb(dataWebLocation, copied_html_selector):
 print("______________________________________________________  mkr [AI_respon] ")
 def AI_respon(usr_input_txt):
 
-    available_no_cmd_list=[]
-    try:
-        for i in range(0, len(AI_available_cmd_code_list)):
-            available_no_cmd_list.append(i+1)
-
-        print(available_no_cmd_list)
-
-        if int(usr_input_txt) in available_no_cmd_list:
-            # AI_speak(str(available_no_cmd_list)+' 중에 하나라면 실행 가능한 코드입니다')
-            # AI_speak(usr_input_txt+' 가용목록 인덱스가 입력되었습니다.')
-            AI_speak('가용목록 인덱스가 입력되었습니다.')
-            AI_speak('인덱스에 대한 코드를 수행합니다')
-            
-            # [TO_DO s]
-            AI_speak('이 다음코드는 더이상 진행되지 않게. 루프의 처음부분으로 돌아가도록 리턴을 시키는 임시대응코드 입니다. 추후에 삭제를 하고. 엔덱스에 따라 작동하도록 다른 것으로 대체할 것 입니다')
-            usr_input_txt = 'pass'
-            # [TO_DO e]
-
-        else:
-           pass
-
-    except Exception as e:
-        str_multipled="_" * 60
-        print(str_multipled+ 'error id 2023 02 18 13 58 s')
-        print(str_multipled + 'e info s')
-        print(e)
-        print(str_multipled + 'e info e')
-        print(str_multipled + 'trouble shooting info s')
-        traceback.print_exc(file=sys.stdout)
-        print(str_multipled + 'trouble shooting info e')
-        print(str_multipled + 'error id 2023 02 18 13 58 e')
-        AI_speak('익셉션이 발생하였습니다. 익셉션을 발생시키고 넘어가도록 하는 것은. 익셉션을 발생시키지 않고 처리하는 것보다 좋은 방법은 아닌 것 같습니다. 추후에 수정을 해주세요. 일단은 진행합니다')
-        # AI_speak('익셉션이 발생하였습니다')
-        # AI_speak('익셉션을 발생시키고 넘어가도록 하는 것은 익셉션을 발생시키지 않고 처리하는 것보다 좋은 방법은 아닌 것 같습니다')
-        # AI_speak('추후에 수정을 해주세요')
-        # AI_speak('일단은 진행합니다')
-
     if usr_input_txt == 'pass':
         pass
 
@@ -1001,10 +964,46 @@ def AI_respon(usr_input_txt):
     elif usr_input_txt == '_________':
         AI_speak('해당 기능은 아직 준비되지 않았습니다')
 
-
     else:
         # AI_speak('입력하신 내용이 usr_input_txt 는 oooo 과 유사합니다') #[to do]
-        AI_speak('해당 기능은 아직 준비되지 않았습니다')
+        # AI_speak('해당 기능은 아직 준비되지 않았습니다')
+        available_no_cmd_list = []
+        try:
+            for i in range(0, len(AI_available_cmd_code_list)):
+                available_no_cmd_list.append(i + 1)
+
+            print(available_no_cmd_list)
+
+            if int(usr_input_txt) in available_no_cmd_list:
+                # AI_speak(str(available_no_cmd_list)+' 중에 하나라면 실행 가능한 코드입니다')
+                # AI_speak(usr_input_txt+' 가용목록 인덱스가 입력되었습니다.')
+                AI_speak('가용목록 인덱스가 입력되었습니다.')
+                AI_speak('인덱스에 대한 코드를 수행합니다')
+
+                # [TO_DO s]
+                AI_speak(
+                    '이 다음코드는 더이상 진행되지 않게. 루프의 처음부분으로 돌아가도록 리턴을 시키는 임시대응코드 입니다. 추후에 삭제를 하고. 엔덱스에 따라 작동하도록 다른 것으로 대체할 것 입니다')
+                usr_input_txt = 'pass'
+                # [TO_DO e]
+
+            else:
+                pass
+
+        except Exception as e:
+            str_multipled = "_" * 60
+            print(str_multipled + 'error id 2023 02 18 13 58 s')
+            print(str_multipled + 'e info s')
+            print(e)
+            print(str_multipled + 'e info e')
+            print(str_multipled + 'trouble shooting info s')
+            traceback.print_exc(file=sys.stdout)
+            print(str_multipled + 'trouble shooting info e')
+            print(str_multipled + 'error id 2023 02 18 13 58 e')
+            AI_speak('익셉션이 발생하였습니다. 익셉션을 발생시키고 넘어가도록 하는 것은. 익셉션을 발생시키지 않고 처리하는 것보다 좋은 방법은 아닌 것 같습니다. 추후에 수정을 해주세요. 일단은 진행합니다')
+            # AI_speak('익셉션이 발생하였습니다')
+            # AI_speak('익셉션을 발생시키고 넘어가도록 하는 것은 익셉션을 발생시키지 않고 처리하는 것보다 좋은 방법은 아닌 것 같습니다')
+            # AI_speak('추후에 수정을 해주세요')
+            # AI_speak('일단은 진행합니다')
 
 
 def AI_speak(text):
