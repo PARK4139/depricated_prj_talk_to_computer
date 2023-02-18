@@ -94,11 +94,13 @@ gTTS_Mgr = gTTS(text=text, lang=lang )
 # chdir('../..')#부모의 부모
 # chdir('../../..')# 부모의 부모의 부모?
 chdir('..')#부모
-if os.path.exists('./mp3'):
-    chdir('./mp3')
+
+tmp = './mp3'
+if os.path.exists(tmp):
+    chdir(tmp)
 else:
-    mkdir('./mp3')
-    chdir('./mp3')
+    mkdir(tmp)
+    chdir(tmp)
     
 if os.path.exists(file_path):
     os.startfile(file_path)

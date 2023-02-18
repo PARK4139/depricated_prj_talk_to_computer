@@ -1,0 +1,80 @@
+
+C:\Users\WIN10PROPC3\Desktop\SERVER_ALPHA\[TO DO]\prj_talk_to_computer>ipconfg
+
+C:\Users\WIN10PROPC3\Desktop\SERVER_ALPHA\[TO DO]\prj_talk_to_computer>ipconfig
+
+Windows IP Configuration
+
+
+Ethernet adapter 이더넷:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+
+Wireless LAN adapter 로컬 영역 연결* 3:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+
+Wireless LAN adapter 로컬 영역 연결* 4:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+
+Wireless LAN adapter Wi-Fi 2:
+
+   Connection-specific DNS Suffix  . : 
+   Link-local IPv6 Address . . . . . : fe80::ad51:426c:3be4:88ca%7
+   IPv4 Address. . . . . . . . . . . : 172.30.1.77
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 172.30.1.254
+
+Ethernet adapter Bluetooth 네트워크 연결:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+
+C:\Users\WIN10PROPC3\Desktop\SERVER_ALPHA\[TO DO]\prj_talk_to_computer>ipconfig
+
+Windows IP Configuration
+
+
+Ethernet adapter 이더넷:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+
+Wireless LAN adapter 로컬 영역 연결* 3:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+
+Wireless LAN adapter 로컬 영역 연결* 4:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+
+Wireless LAN adapter Wi-Fi 2:
+
+   Connection-specific DNS Suffix  . : 
+   Link-local IPv6 Address . . . . . : fe80::ad51:426c:3be4:88ca%7
+   IPv4 Address. . . . . . . . . . . : 172.30.1.77
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 172.30.1.254
+
+Ethernet adapter Bluetooth 네트워크 연결:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+
+C:\Users\WIN10PROPC3\Desktop\SERVER_ALPHA\[TO DO]\prj_talk_to_computer>
+C:\Users\WIN10PROPC3\Desktop\SERVER_ALPHA\[TO DO]\prj_talk_to_computer>cd py
+
+C:\Users\WIN10PROPC3\Desktop\SERVER_ALPHA\[TO DO]\prj_talk_to_computer\py> %cd%cho
+
+C:\Users\WIN10PROPC3\Desktop\SERVER_ALPHA\[TO DO]\prj_talk_to_computer\py>echo %cd%
+C:\Users\WIN10PROPC3\Desktop\SERVER_ALPHA\[TO DO]\prj_talk_to_computer\py
+
+C:\Users\WIN10PROPC3\Desktop\SERVER_ALPHA\[TO DO]\prj_talk_to_computer\py>%cd%
+
+C:\Users\WIN10PROPC3\Desktop\SERVER_ALPHA\[TO DO]\prj_talk_to_computer\py>py

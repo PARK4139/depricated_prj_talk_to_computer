@@ -27,6 +27,7 @@ REM pip install PyAudio
 REM pip install selenium
 REM pip install psutil
 REM pip install mutagen
+REM pip install googletrans==4.0.0-rc1 
 chcp 65001
 @echo off
 echo "______________________________________________________________ python 실행

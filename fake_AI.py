@@ -1,3 +1,5 @@
+import traceback
+
 print("______________________________________________________  mkr [module importing] ")
 # -*- coding: utf-8 -*-
 import os
@@ -18,6 +20,8 @@ from sys import argv
 from mutagen.mp3 import MP3
 import psutil  # 실행중인 프로세스 및 시스템 활용 라이브러리
 import json
+import googletrans
+from random import randint, random
 
 print("______________________________________________________  mkr [constant defination] ")
 AI_available_cmd_code_list = [
@@ -27,25 +31,26 @@ AI_available_cmd_code_list = [
     '`:advanced batch mode',
     'jhppc1:jhppc1',
     'remotedesktop:remote desktop',
-    'x:exit',
-    'sd_s:shutdown',
-    'sd_e:shutdown cancelation',
     # 'voice mode:voice mode',
     # 'voiceless mode:voiceless mode',
     '시간:시간',
     '미세먼지랭킹:',
-    '네이버 종합날씨:',
-    '네이버 미세먼지:',
-    '네이버 초미세먼지:',
+    '종합날씨:',
+    '미세먼지:',
+    '초미세먼지:',
     '공간:공간',
-    '기온:기온[ing]',
-    '종합날씨정보:_________[TO DO]',
-    '_________:_________[TO DO]',
-    '172.30.1.33:_________[TO DO]',
-    'taskkill:task kill[TO DO]',
-    '가용명령개수:가용명령개수[TO DO]',
-    '식물조언:식물조언[TO DO]',
-    'foo:foo[TO DO]',
+    '체감온도:체감온도',
+    '가용명령개수:가용명령개수',
+    '종합날씨정보:종합날씨정보',
+    '식물조언:식물조언',
+    '스케쥴 모드:스케쥴 모드',
+    'cls():cls()',
+    'taskkill(알송):_________',
+    '_________:_________',
+    '172.30.1.33:_________',
+    'sd_s:shutdown',
+    'sd_e:shutdown cancelation',
+    'x:exit'
 ]
 high_frequency_batch_cmd_routine_pattern_list = [
     # '',
@@ -129,7 +134,7 @@ def taskkill(target_str):
 def startRecordCommand(file_address):
     # sys.stdout = open('py cmd recording.txt', 'a', encoding='utf-8')  #
     # sys.stdout = open('py cmd recording.txt', 'w', encoding='utf-8')  #
-    # sys.stdout = open('py cmd recording.txt', 'r', encoding='utf-8')  # 
+    # sys.stdout = open('py cmd recording.txt', 'r', encoding='utf-8')  #
     sys.stdout = open(file_address, 'w', encoding='utf-8')  #
 
 
@@ -152,16 +157,56 @@ def readFile(fileAddress):
         readed_text = f.read()
     return readed_text
 
+def pause():
+    os.system("pause")
+
 
 def listen(recognizer, audio):
     pass
 
-
-# def AI_respon(input_text):
-# if input_text=='몇 시야':
-# now = time
-# yyyyMMddHHmmss=now.strftime('%Y %m %d %H %M %S')
-# pass
+print("______________________________________________________  mkr [time initialization] ")
+def getTimeAsStyle(time_style):
+    now = time
+    localtime = now.localtime()
+    if time_style=='0':
+        default = str(now.strftime('%Y_%m_%d_%H_%M_%S').replace('_'," "))
+        return default
+    elif time_style == '1':
+        timestamp = str(now.time())
+        return timestamp
+    elif time_style == '2':
+        yyyy_MM_dd_HH_mm_ss = str(now.strftime('%Y_%m_%d_%H_%M_%S'))
+        return yyyy_MM_dd_HH_mm_ss
+    elif time_style == '3':
+        customTime1 = str(now.strftime('%Y-%m-%d %H:%M:%S'))
+        return customTime1
+    elif time_style == '4':
+        office_style = str(now.strftime('%Y-%m-%d %H:%M'))
+        return office_style
+    elif time_style == '5':
+        yyyy = str(localtime.tm_year)
+        return yyyy
+    elif time_style == '6':
+        MM = str(localtime.tm_mon)
+        return MM
+    elif time_style == '7':
+        dd = str(localtime.tm_mday)
+        return dd
+    elif time_style == '8':
+        HH = str(localtime.tm_hour)
+        return HH
+    elif time_style == '9':
+        mm = str(localtime.tm_min)
+        return mm
+    elif time_style == '10':
+        ss = str(localtime.tm_sec)
+        return ss
+    elif time_style == '11':
+        weekday = str(localtime.tm_wday)
+        return weekday
+    elif time_style == '12':
+        elapsedDaysFromJan01 = str(localtime.tm_yday)
+        return elapsedDaysFromJan01
 
 def AI_Crawlweb(dataWebLocation, copied_html_selector):
     dataWebLocation = unquote(dataWebLocation)  # url decoding
@@ -177,15 +222,51 @@ def AI_Crawlweb(dataWebLocation, copied_html_selector):
     return str(element.text)
 
 
-print("______________________________________________________  mkr [AI_respon defination] ")
+print("______________________________________________________  mkr [AI_respon] ")
+def AI_respon(usr_input_txt):
 
+    available_no_cmd_list=[]
+    try:
+        for i in range(0, len(AI_available_cmd_code_list)):
+            available_no_cmd_list.append(i+1)
 
-def AI_respon(usr_input):
-    if usr_input == 'x':
+        print(available_no_cmd_list)
+
+        if int(usr_input_txt) in available_no_cmd_list:
+            AI_speak(str(available_no_cmd_list)+' 중에 하나라면 실행 가능한 코드입니다')
+            AI_speak(usr_input_txt+' 가용목록 인덱스가 입력되었습니다.')
+            AI_speak('인덱스에 대한 코드를 수행합니다')
+            # [TO_DO]
+            # usr_input_txt = 'pass'  이 코드는 임시대응코드 입니다 추후에 삭제를 하고 엔덱스에 따라 작동하도록 다른 것으로 대체할 것 입니다.
+            usr_input_txt = 'pass'
+
+        else:
+           pass
+
+    except Exception as e:
+        str_multipled="_" * 60
+        print(str_multipled+ 'error id 2023 02 18 13 58 s')
+        print(str_multipled + 'e info s')
+        print(e)
+        print(str_multipled + 'e info e')
+        print(str_multipled + 'trouble shooting info s')
+        traceback.print_exc(file=sys.stdout)
+        print(str_multipled + 'trouble shooting info e')
+        print(str_multipled + 'error id 2023 02 18 13 58 e')
+        AI_speak('익셉션이 발생하였습니다. 익셉션을 발생시키고 넘어가도록 하는 것은. 익셉션을 발생시키지 않고 처리하는 것보다 좋은 방법은 아닌 것 같습니다. 추후에 수정을 해주세요. 일단은 진행합니다')
+        # AI_speak('익셉션이 발생하였습니다')
+        # AI_speak('익셉션을 발생시키고 넘어가도록 하는 것은 익셉션을 발생시키지 않고 처리하는 것보다 좋은 방법은 아닌 것 같습니다')
+        # AI_speak('추후에 수정을 해주세요')
+        # AI_speak('일단은 진행합니다')
+
+    if usr_input_txt == 'pass':
+        pass
+
+    elif usr_input_txt == 'x':
         AI_speak('fake AI 를 종료합니다')
         exit()
 
-    elif usr_input == '미세먼지랭킹':
+    elif usr_input_txt == '미세먼지랭킹':
         # AI_speak('미세먼지랭킹 날씨 정보를 디스플레이 시도합니다')
         # AI_run('https://www.dustrank.com/air/air_dong_detail.php?addcode=41173103')
         # AI_speak('시도완료했습니다')
@@ -194,13 +275,31 @@ def AI_respon(usr_input):
         # AI_speak('미세먼지랭킹 정보')
         AI_run('https://www.dustrank.com/air/air_dong_detail.php?addcode=41173103')
 
-    elif usr_input == '네이버 종합날씨':
+    elif usr_input_txt == '종합날씨':
         AI_run('https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EA%B8%B0%EC%98%A8')
 
-    elif usr_input == '시간':
+    elif usr_input_txt == 'taskkill(알송)':
+        taskkill('ALSong.exe')
+        taskkill('Alsong.exe')
+
+    elif usr_input_txt == '시간':
+        yyyy = getTimeAsStyle('5')
+        MM = getTimeAsStyle('6')
+        dd = getTimeAsStyle('7')
+        HH = getTimeAsStyle('8')
+        mm = getTimeAsStyle('9')
+        ss = getTimeAsStyle('10')
+        AI_speak('현재 시간은')
+        AI_speak(yyyy + '년')
+        AI_speak(MM + '월')
+        AI_speak(dd + '일')
+        AI_speak(HH + '시')
+        AI_speak(mm + '분')
+        AI_speak(ss + '초')
+        AI_speak('입니다')
         pass
 
-    elif usr_input == '네이버 초미세먼지':
+    elif usr_input_txt == '초미세먼지':
         # AI_speak('네이버 초미세먼지 정보 웹크롤링을 시도합니다.')
         dataWebLocation = "https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&qvt=0&query=%EC%A0%84%EA%B5%AD%EC%B4%88%EB%AF%B8%EC%84%B8%EB%A8%BC%EC%A7%80"
         copied_html_selector = '#main_pack > section.sc_new._atmospheric_environment > div > div.api_cs_wrap > div > div:nth-child(3) > div.main_box > div.detail_box'
@@ -239,7 +338,7 @@ def AI_respon(usr_input):
 
 
 
-    elif usr_input == '공간':
+    elif usr_input_txt == '공간':
 
         # 네이버 지역 정보 option s # 네이버 지역 정보 option s # 네이버 지역 정보 option s # 네이버 지역 정보 option s # 네이버 지역 정보 option s
         INFO_NAME = '네이버 지역 정보'
@@ -265,7 +364,7 @@ def AI_respon(usr_input):
         AI_speak('인 것으로 추측됩니다')
 
 
-    elif usr_input == '기온':  # [웹 스크랩핑 및 유효텍스트 파싱]
+    elif usr_input_txt == '체감온도':  # [웹 스크랩핑 및 유효텍스트 파싱]
 
         # 네이버 지역 정보 option s # 네이버 지역 정보 option s # 네이버 지역 정보 option s # 네이버 지역 정보 option s # 네이버 지역 정보 option s
         INFO_NAME = '네이버 체감온도 정보'
@@ -296,7 +395,7 @@ def AI_respon(usr_input):
         AI_speak(element_str.strip())
         AI_speak('인 것으로 추측됩니다')
 
-    elif usr_input == '종합날씨정보':
+    elif usr_input_txt == '종합날씨정보':
 
         # 네이버 지역 정보 option s # 네이버 지역 정보 option s # 네이버 지역 정보 option s # 네이버 지역 정보 option s # 네이버 지역 정보 option s
         INFO_NAME = '네이버 종합날씨정보 정보'
@@ -395,15 +494,31 @@ def AI_respon(usr_input):
         print(element_str)
         AI_speak('자외선')
         AI_speak(element_str.strip())
-        # print("______________________________________________________  mkr [_________] ")
-        # copied_html_selector = '_________'
-        # elements = soup.select(copied_html_selector)
-        # AI_print(elements)#추출된 elements 출력 시도
+
+        AI_speak('입니다')
+
         # print("______________________________________________________  mkr [_________] ")
         # copied_html_selector = '_________'
         # elements = soup.select(copied_html_selector)
         # AI_print(elements)#추출된 elements 출력 시도
 
+    elif usr_input_txt == 'hardcode json 처리':
+        print("______________________________________________________  mkr [json 처리 시작] ")
+        AI_speak('준비중인 기능입니다')
+
+        # 네이버 지역 정보 option s # 네이버 지역 정보 option s # 네이버 지역 정보 option s # 네이버 지역 정보 option s # 네이버 지역 정보 option s
+        INFO_NAME = '네이버 체감온도 정보'
+        dataWebLocation = 'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EA%B8%B0%EC%98%A8'
+        copied_html_selector = '#main_pack > section.sc_new.cs_weather_new._cs_weather > div._tab_flicking > div.content_wrap > div.open > div:nth-child(1) > div > div.weather_info > div > div._today > div.temperature_info > dl > dd:nth-child(2)'
+        # 네이버 지역 정보 option e # 네이버 지역 정보 option e # 네이버 지역 정보 option e # 네이버 지역 정보 option e # 네이버 지역 정보 option e
+
+        dataWebLocation = unquote(dataWebLocation)  # url decoding
+        page = requests.get(dataWebLocation)
+        soup = bs(page.text, "html.parser")
+
+        copied_html_selector = '_________'
+        elements = soup.select(copied_html_selector)
+        AI_print(elements)#추출된 elements 출력 시도
         for i in range(0, len(page.text.split('\n'))):
             if 'hourlyFcastListJson' in page.text.split('\n')[i]:
                 # print("______________________________________________________  mkr [hourlyFcastListJson 들어있는 줄들 출력시도] ")
@@ -464,7 +579,7 @@ def AI_respon(usr_input):
         AI_speak('인 것으로 추측됩니다')
 
 
-    elif usr_input == '네이버 미세먼지':
+    elif usr_input_txt == '네이버 미세먼지':
         AI_speak('네이버 미세먼지 정보 웹크롤링을 시도합니다.')
         dataWebLocation = "https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&qvt=0&query=%EC%A0%84%EA%B5%AD%EB%AF%B8%EC%84%B8%EB%A8%BC%EC%A7%80"
         copied_html_selector = '#main_pack > section.sc_new._atmospheric_environment > div > div.api_cs_wrap > div > div:nth-child(3) > div.main_box > div.detail_box'
@@ -506,15 +621,15 @@ def AI_respon(usr_input):
                 for i in range(0, len(tmp) - 3):
                     AI_speak(tmp[i])
 
-    elif usr_input == '5':
+    elif usr_input_txt == '가용코드목록':
         AI_print(AI_available_cmd_code_list)
         AI_speak("조회되었습니다")
 
-    # elif usr_input == 'voiceless mode':
+    # elif usr_input_txt == 'voiceless mode':
     # def AI_speak(text):
     # print(text)
 
-    # elif usr_input == 'voice mode':
+    # elif usr_input_txt == 'voice mode':
     # def AI_speak(text):
     # address=os.getcwd()+'\\mp3\\'+ text +'.mp3'
 
@@ -537,7 +652,7 @@ def AI_respon(usr_input):
 
     # taskkill('ALSong.exe')
 
-    # elif usr_input == '`':
+    # elif usr_input_txt == '`':
     #     AI_speak('single mode 가 시작되었습니다')
     #     # print('single mode s single mode s single mode s single mode s single mode s single mode s single mode s single mode s single mode s ')
     #     while(True):
@@ -546,8 +661,8 @@ def AI_respon(usr_input):
     #             AI_speak('single mode를 종료합니다')
     #             break
     #         elif len(batch_mode_input)==1:
-    #             usr_input=AI_available_cmd_code_list[int(batch_mode_input)-1].split(':')[0]
-    #             AI_respon(usr_input)
+    #             usr_input_txt=AI_available_cmd_code_list[int(batch_mode_input)-1].split(':')[0]
+    #             AI_respon(usr_input_txt)
     #         elif batch_mode_input =='':
     #             AI_speak('아무것도 입력되지 않았습니다')
     #         elif batch_mode_input =='`':
@@ -557,7 +672,7 @@ def AI_respon(usr_input):
     #     # print('eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e eingle mode e ')
     #
 
-    # elif usr_input == '``':
+    # elif usr_input_txt == '``':
     #     AI_speak('batch mode 가 시작되었습니다')
     #     # print('batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s batch mode s ')
     #     while(True):
@@ -573,15 +688,25 @@ def AI_respon(usr_input):
     #         else:
     #             AI_speak('입력된 배치명령의 개수는' + str(len(batch_mode_input)) +'개 입니다')
     #             for i in range(0,len(batch_mode_input)):                      # i=0
-    #                 usr_input=AI_available_cmd_code_list[int(batch_mode_input[i])-1].split(':')[0] #usr_input=AI_available_cmd_code_list[2].split(':')[0]
+    #                 usr_input_txt=AI_available_cmd_code_list[int(batch_mode_input[i])-1].split(':')[0] #usr_input_txt=AI_available_cmd_code_list[2].split(':')[0]
     #                 AI_speak(str(i+1)+'번째 코드를 실행시도합니다')
-    #                 AI_respon(usr_input)
+    #                 AI_respon(usr_input_txt)
     #
     #     # print('batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e batch mode e ')
 
-    elif usr_input == '`':
-        # AI_speak('advanced batch mode 가 시작되었습니다')
-        # print('advanced batch mode s advanced batch mode s advanced batch mode s advanced batch mode s advanced batch mode s advanced batch mode s advanced batch mode s')
+    elif usr_input_txt == '`':
+        AI_speak('advanced batch mode 가 시작되었습니다')
+        print('advanced batch mode s advanced batch mode s advanced batch mode s advanced batch mode s advanced batch mode s advanced batch mode s advanced batch mode s')
+        cls()
+        CRLF()
+        CRLF()
+        CRLF()
+        CRLF()
+        # print(' '+'가용명령코드목록')
+        print('                                     ' + '가용명령코드목록')
+        CRLF()
+        AI_print(AI_available_cmd_code_list)
+        CRLF()
         while (True):
             batch_mode_input = input("                                                                                                ")
             if batch_mode_input == 'x' or batch_mode_input == 'X':
@@ -604,13 +729,13 @@ def AI_respon(usr_input):
                     # AI_respon(AI_available_cmd_code_list[int(list[i])-1].split(':')[0])
                     # print(list_element)
                     # for i in range(0, len(AI_available_cmd_code_list) - 1):
-                    #     if usr_input in AI_available_cmd_code_list[i].split(':')[0]:
-                    #         # if usr_input!='' or usr_input!='`':
-                    #         if usr_input != '':
+                    #     if usr_input_txt in AI_available_cmd_code_list[i].split(':')[0]:
+                    #         # if usr_input_txt!='' or usr_input_txt!='`':
+                    #         if usr_input_txt != '':
                     #             # AI_speak(AI_available_cmd_code_list[i].split(':')[0]+'에 대한 명령코드가 입력되었습니다')
                     #             pass
                     #
-                    # AI_respon(usr_input)
+                    # AI_respon(usr_input_txt)
                     # try:
                     # print(len(AI_available_cmd_code_list[int(list_element) - 1]))
                     # print(AI_available_cmd_code_list[int(list_element) - 1])
@@ -618,56 +743,264 @@ def AI_respon(usr_input):
                     try:
                         AI_respon(AI_available_cmd_code_list[int(list_element) - 1].split(':')[0])
                     except Exception as e:  # 모든 예외의 에러 메시지를 출력할 때는 Exception을 사용
-                        print('예외가 발생했습니다')
+                        AI_speak('advanced batch mode 실행 중 예외가 발생했습니다')
+                        print('advanced batch mode 실행 중 예외가 발생했습니다')
                         print(e)
-                        AI_speak('예외가 발생했습니다')
                         # AI_speak('가용코드 목록에 없는 코드입니다')
 
-        # print('advanced batch mode e advanced batch mode e advanced batch mode e advanced batch mode e advanced batch mode e advanced batch mode e advanced batch mode e')
+        print('advanced batch mode e advanced batch mode e advanced batch mode e advanced batch mode e advanced batch mode e advanced batch mode e advanced batch mode e')
 
 
-    elif usr_input == '가용명령개수':
-        AI_speak('가용명령의 개수는' + str(len(AI_available_cmd_code_list)) + '개 이고')
+    elif usr_input_txt == '가용명령개수':
+        AI_speak('가용명령의 개수는')
+        AI_speak(str(len(AI_available_cmd_code_list)))
+        AI_speak('개 입니다')
+        AI_respon('3 ')
 
-    elif usr_input == '식물조언':
+    elif usr_input_txt == '식물조언':
         AI_speak('식물에게 물샤워를 줄시간입니다')
         AI_speak('물샤워를 시켜주세요')
         AI_speak('오늘은 식물에게 햇빛샤워를 시켜주는날입니다')
         AI_speak('하늘이가 없을때 샤워를 시켜주세요')
         AI_speak('하트축전에게 빠르게 식물등빛을 주세요')
-        AI_speak('이러다 죽습니다 서둘러 등빛을 주세요')
-        # AI_speak('이러다 죽습니다')
-        # AI_speak('서둘러 등빛을 주세요')
+        AI_speak('이러다 죽습니다')
+        AI_speak('서둘러 등빛을 주세요')
 
-    elif usr_input == '':
+    elif usr_input_txt == '':
         AI_speak('아무것도 입력되지 않았습니다')
         AI_speak('명령코드를 입력해주세요')
-        AI_speak('_______')
 
+    elif usr_input_txt == '몇 시야' or usr_input_txt == '몇시야':
+        # AI_speak(getTimeAsStyle('5'))
+        # AI_speak('년')
+        # AI_speak(getTimeAsStyle('6'))
+        # AI_speak('월')
+        # AI_speak(getTimeAsStyle('7'))
+        # AI_speak('일')
+        AI_speak(getTimeAsStyle('8'))
+        AI_speak('시')
+        AI_speak(getTimeAsStyle('9'))
+        AI_speak('분')
+        AI_speak('입니다')
 
-    elif usr_input == 'jhppc1':
+    elif usr_input_txt == 'jhppc1':
         jhppc1 = 'https://remotedesktop.google.com/access/session/b797cd99-b738-f4db-9b38-9a2e25a57a47'
         AI_run(jhppc1)
 
-    elif usr_input == 'remotedesktop':
+    elif usr_input_txt == 'remotedesktop':
         remotedesktop = 'https://remotedesktop.google.com/access'
         AI_run(remotedesktop)
 
-    elif usr_input == 'sd_s':
-        AI_speak('1시간 뒤')
-        AI_speak('시스템 종료를 시도합니다')
-        os.system('shutdown /s /t 3600')  # 1시간 뒤
-        # os.system('shutdown /s /t 600') #10분 뒤
+    elif usr_input_txt == 'sd_s':
+        ment="정말로 컴퓨터를 종료할까요 원하시면 Y를 눌러주세요"
+        AI_speak(ment)
+        usr_input_txt=input(ment)
+        if usr_input_txt.upper() == 'Y':
+            ment='시스템 종료를 시도합니다'
+
+            # AI_speak('1시간 뒤 s')
+            AI_speak(ment)
+            # os.system('shutdown /s /t 3600')  # 1시간 뒤
+            # AI_speak('1시간 뒤 e')
+
+            # AI_speak('즉시 s')
+            AI_speak(ment)
+            os.system('shutdown /s /t 0')  # 즉시
+            # AI_speak('즉시 e')
+
+            # AI_speak('10분 뒤')
+            AI_speak(ment)
+            # os.system('shutdown /s /t 600') #10분 뒤
+            # AI_speak('10분 뒤')
+        else:
+            pass
+
+    elif usr_input_txt == 'sd_e':
+        os.system('chcp 65001')
+        # os.system('cmd /k shutdown -a')
+        os.system('cmd /k shutdown -a > tmp.txt')
+        os.system('echo 아래의 명령어를 사용하여 cmd를 종료하여 되돌아 갈 수 있습니다')
+        os.system('echo exit()')
+
+    elif usr_input_txt == 'cls()':
+        cls()
+
+    elif usr_input_txt == '스케쥴 모드':
+        AI_speak('스케쥴 모드를 시작합니다')
+        cnt = 0
+        started_time = 0
+        while (True):
+
+            yyyy = getTimeAsStyle('5')
+            MM = getTimeAsStyle('6')
+            dd = getTimeAsStyle('7')
+            HH = getTimeAsStyle('8')
+            mm = getTimeAsStyle('9')
+            ss = getTimeAsStyle('10')
+
+            if cnt == 0:
+                # AI_speak('while routine에 접근을 시도합니다')
+                started_time = getTimeAsStyle('0')
+                # AI_speak('컴퓨터와 대화할 준비가 되었습니다')
+                # taskkill('ALSong.exe')
+                cnt += 1
+                cls()
 
 
-    elif usr_input == 'sd_e':
-        os.system('shutdown -a')
+            if ss == '30':
+                # 5분마다 말하기 s
+                # if int(mm)%'05'==0:
+                # AI_speak('현재 시간은')
+                # AI_speak(HH+'시')
+                # AI_speak(mm+'분')
+                # AI_speak('입니다')
+                # 5분마다 말하기 e
 
-    elif usr_input == 'foo':
+                # 10분마다 말하기 s
+                # if int(mm)%'10'==0:
+                # AI_speak('현재 시간은')
+                # AI_speak(HH+'시')
+                # AI_speak(mm+'분')
+                # AI_speak('입니다')
+                # 10분마다 말하기 e
+
+                # 9시에서 11시 사이에는 15분마다 말하기 s
+                # if 9 <= int(HH) and int(HH) <= 23 and int(mm) % 15 == 0:
+                if 9 <= int(HH) <= 23 and int(mm) % 15 == 0:  # 파이썬은 간결하게 이런것도 됩니다
+                    AI_speak('현재 시간은')
+                    AI_speak(HH + '시')
+                    AI_speak(mm + '분')
+                    AI_speak('입니다')
+                # 9시에서 11시 사이에는 15분마다 말하기 e
+
+                # 아침 6시 부터는 5분마다 시간 말하기 s
+                if HH == '06' and int(mm) % 5 == 0:
+                    AI_speak('현재 시간은')
+                    AI_speak(HH + '시')
+                    AI_speak(mm + '분')
+                    AI_speak('입니다')
+                # 아침 6시 부터는 5분마다 시간 말하기 e
+
+                # 아침 7시 부터는 5분마다 시간 말하기 s
+                if HH == '07' and int(mm) % 5 == 0:
+                    AI_speak('현재 시간은')
+                    AI_speak(HH + '시')
+                    AI_speak(mm + '분')
+                    AI_speak('입니다')
+                # 아침 7시 부터는 5분마다 시간 말하기 e
+
+                # 아침 8시에 시간 말하기 s
+                if HH == '08' and mm == '00':
+                    AI_speak('현재 시간은')
+                    AI_speak(HH + '시')
+                    AI_speak(mm + '분')
+                    AI_speak('입니다')
+                    AI_speak('더이상 나가는 것을 지체하기 어렵습니다')
+                # 아침 8시에 시간 말하기 e
+
+                # 아침 6시에 30분에 음악재생하기
+                if HH == '06' and mm == '30':
+                    AI_speak('음악을 재생합니다')
+                    AI_run()
+                    # [TO DO]
+
+                if HH == '08' and mm == '50':
+                    AI_speak('업무시작 10분전입니다')
+                    AI_speak('업무준비를 시작하세요')
+                    # [TO DO]
+
+                if HH == '09' and mm == '00':
+                    AI_speak('음악을 종료합니다')
+                    # taskkill('Music.UI.exe')
+                    # taskkill('ALSong.exe')
+                    # time.sleep(10)
+                    # [TO DO]
+
+                if HH == '11' and mm == '30':
+                    AI_speak('점심시간입니다')
+                    # [TO DO]
+
+                if HH == '11' and mm == '30':
+                    AI_speak('음악을 재생합니다')
+                    # [TO DO]
+
+                if HH == '11' and mm == '30':
+                    AI_speak('12시 30분 입니다')
+                    AI_speak('씻으실 것을 추천드립니다')
+                    AI_speak('샤워루틴을 수행하실 것을 추천드립니다')
+                    # AI_speak('샤워루틴을 보조를 수행할까요')
+                    # [TO DO]
+
+                if HH == '11' and mm == '50':
+                    AI_speak('12시 10분 전입니다')
+                    AI_speak('누우실 것을 추천드립니다')
+                    # AI_speak('주무실 것을 추천드립니다')
+                    # [TO DO]
+
+                # 30분 마다 랜덤기기(뽑기)를 의도한 수 나오면 프로그램 시작 경과시간 말하기
+                if mm%30 == 0:
+                    go_or_no_go = random.randrange(1, 101) # 1에서 100 사이의 수
+                    if go_or_no_go == 55 or 58 or 100:
+                        AI_speak('랜덤 수와 의도한 수가 일치합니다')
+
+                        print('프로그램을 시작시간은')
+                        print(started_time.split(' ')[0])#년
+                        print('년')
+                        print(started_time.split(' ')[1])#월
+                        print('월')
+                        print(started_time.split(' ')[2])#일
+                        print('일')
+                        print(started_time.split(' ')[3])#시
+                        print('시')
+                        print(started_time.split(' ')[4])#분
+                        print('분')
+                        print(started_time.split(' ')[5])#초
+
+                        print('프로그램을 현재시각은')
+                        print(yyyy)  # 년
+                        print('년')
+                        print(MM)  # 월
+                        print('월')
+                        print(dd)  # 일
+                        print('일')
+                        print(HH)
+                        print('시')
+                        print(mm)
+                        print('분')
+
+                        AI_speak('프로그램을 경과시각은')#경과일  ,   경과시각,   경과분,  모두 연산이 고민이 필요한 것 같다
+                        delta_yyyy = str(float(yyyy) - float(started_time.split(' ')[0]))
+                        AI_speak(delta_yyyy+'년')
+
+                        delta_MM = str(float(MM) - float(started_time.split(' ')[1]))
+                        AI_speak(delta_MM+'월')
+
+                        delta_dd = str(float(dd) - float(started_time.split(' ')[2]))
+                        AI_speak(delta_dd+'일')
+
+                        delta_HH = str(float(HH) - float(started_time.split(' ')[3]))
+                        AI_speak(delta_HH+'시')
+
+                        delta_mm = str(float(mm) - float(started_time.split(' ')[4]))
+                        AI_speak(delta_mm+'분')
+
+                        AI_speak('프로그램을 시작한지')
+                        AI_speak(delta_yyyy+'년')
+                        AI_speak(delta_MM+'월')
+                        AI_speak(delta_dd+'일')
+                        AI_speak(delta_HH+'시')
+                        AI_speak(delta_mm+'분')
+                        AI_speak('으로 추측됩니다')
+
+                        # [TO DO]
+
+
+    elif usr_input_txt == '_________':
         AI_speak('해당 기능은 아직 준비되지 않았습니다')
 
+
     else:
-        # AI_speak('입력하신 내용이 usr_input 는 oooo 과 유사합니다') #[to do]
+        # AI_speak('입력하신 내용이 usr_input_txt 는 oooo 과 유사합니다') #[to do]
         AI_speak('해당 기능은 아직 준비되지 않았습니다')
 
 
@@ -749,25 +1082,32 @@ def AI_listen():
 
 
 def AI_run(target_str):
-    last_word = target_str.split('.')[-1]
+    last_txt = target_str.split('.')[-1]
     if 'http' in target_str:
         if '%' in target_str:
             target_str = 'explorer "' + unquote(target_str).strip()+'"'  # url decoding
-            print("mkr749 : "+target_str)
+            # print("mkr749 : "+target_str)
             os.system(target_str)
         else:
             os.system('start ' + target_str)
             # os.system('explorer ' + target_str)
-        # __________________________________________________________________________________ 방법1 s
-        # chromeMgr = webdriver.Chrome()
-        ##이 주석은 '첫한글자_유실예방코드' 입니다>첫한글자_유실현상발견>원인분석실패>비온전대응
-        # chromeMgr.get(target_str)
-        # __________________________________________________________________________________ 방법1 e
+            # __________________________________________________________________________________ 방법1 s
+            # chromeMgr = webdriver.Chrome()
+            ##이 주석은 '첫한글자_유실예방코드' 입니다>첫한글자_유실현상발견>원인분석실패>비온전대응
+            # chromeMgr.get(target_str)
+            # __________________________________________________________________________________ 방법1 e
 
-    elif 'txt' in last_word:
+    elif 'txt' in last_txt:
         os.system('start ' + target_str)
         # os.startfile(os.getcwd()+'/mp3/'+ text +'.mp3') #비동기처리방식
         # os.system('call "'+os.getcwd()+'/mp3/'+ text +'.mp3"')  #동기처리방식[실패]
+
+    elif 'mp3' in last_txt:
+        os.system('start ' + target_str)
+
+    elif 'mp4' in last_txt:
+        os.system('start ' + target_str)
+        # [TO DO]
 
 
 def AI_print(target_list):
@@ -780,38 +1120,22 @@ def AI_print(target_list):
         cnt += 1
 
 
-print("______________________________________________________  mkr [time initialization] ")
-localtime = time.localtime()
-yyyy = time.localtime().tm_year
-MM = time.localtime().tm_mon
-dd = time.localtime().tm_mday
-HH = time.localtime().tm_hour
-mm = time.localtime().tm_min
-ss = time.localtime().tm_sec
-timestamp = time.time()
-weekday = time.localtime().tm_wday
-elapsedDaysFromJan01 = time.localtime().tm_yday
-yyyyMMddHHmmss = time.strftime('%Y %m %d %H %M %S')
-customTime1 = time.strftime('%Y-%m-%d %H:%M:%S')
-customTime2 = time.strftime('%Y-%m-%d %H:%M')
-print("______________________________________________________  mkr [디버깅용 코드] ")
-# os.system("pause")#
-print("______________________________________________________  mkr [main territory] ")
+print("______________________________________________________  mkr [AI territory] ")
 cnt = 0
 started_time = 0
 while (True):
     if cnt == 0:
         # AI_speak('while routine에 접근을 시도합니다')
-        started_time = time.strftime('%Y %m %d %H %M %S')
+        started_time = getTimeAsStyle('8')
         # AI_speak('컴퓨터와 대화할 준비가 되었습니다')
         # taskkill('ALSong.exe')
         cnt += 1
         cls()
-    recorded_time = time
-    yyyyMMddHHmmss = recorded_time.strftime('%Y %m %d %H %M %S')
-    HH = recorded_time.strftime('%H')
-    mm = recorded_time.strftime('%M')
-    ss = recorded_time.strftime('%S')
+
+
+    HH = getTimeAsStyle('8')
+    mm = getTimeAsStyle('9')
+    ss = getTimeAsStyle('10')
     cls()
     CRLF()
     CRLF()
@@ -824,98 +1148,127 @@ while (True):
     AI_print(AI_available_cmd_code_list)
     CRLF()
     # print(' '+'일괄명령패턴목록')
-    print('                                     ' + '일괄명령패턴목록')
-    CRLF()
-    AI_print(high_frequency_batch_cmd_routine_pattern_list)
+    # print('                                     ' + '일괄명령패턴목록')
+    # CRLF()
+    # AI_print(high_frequency_batch_cmd_routine_pattern_list)
     # AI_cmd_code='taskkill'
     # AI_cmd_code='1'
     # AI_cmd_code='2'
     # AI_cmd_code='3'
     # AI_cmd_code='4'
-    # usr_input=AI_cmd_code
+    # usr_input_txt=AI_cmd_code
     # AI_speak('원하시는 명령코드를 입력해 주세요')  # 이걸 멀티 쓰레드로 만들어서  하나의 쓰레드로 5초 카운트 후 AI_speak('원하시는 명령코드를 입력해 주세요')를 수행후 쓰레드 종료 AI_speak('fake AI의 가용명령목록 조회를 원하시면 백팁을 눌러주세요')
-    # usr_input = input("원하시는 명령코드를 입력해 주세요 >>>")
+    # usr_input_txt = input("원하시는 명령코드를 입력해 주세요 >>>")
     CRLF()
-    usr_input = input("                                                                                                ").strip()
+    usr_input_txt = input("                                                                                                ")
     CRLF()
 
     for i in range(0, len(AI_available_cmd_code_list) - 1):
-        if usr_input in AI_available_cmd_code_list[i].split(':')[0]:
-            # if usr_input!='' or usr_input!='`':
-            if usr_input != '':
+        if usr_input_txt in AI_available_cmd_code_list[i].split(':')[0]:
+            # if usr_input_txt!='' or usr_input_txt!='`':
+            if usr_input_txt != '':
                 # AI_speak(AI_available_cmd_code_list[i].split(':')[0]+'에 대한 명령코드가 입력되었습니다')
                 pass
 
-    AI_respon(usr_input)
+    AI_respon(usr_input_txt)
 
-    if ss == '30':
-        # 분마다 말하기
-        # if int(mm)%'05'==0:
-        # AI_speak('현재 시간은')
-        # AI_speak(HH+'시')
-        # AI_speak(mm+'분')
-        # AI_speak('입니다')
-        # if int(mm)%'10'==0:
-        # AI_speak('현재 시간은')
-        # AI_speak(HH+'시')
-        # AI_speak(mm+'분')
-        # AI_speak('입니다')
-        if 9 <= int(HH) and int(HH) <= 23 and int(mm) % 15 == 0:
-            AI_speak('현재 시간은')
-            AI_speak(HH + '시')
-            AI_speak(mm + '분')
-            AI_speak('입니다')
-        # if int(mm)%00==0:
-        # AI_speak('현재 시간은 '+HH+'시'+mm+'분'+' 입니다')
-        # 아침 6시 부터는 5분마다 시간 말하기
-        if HH == '06' and int(mm) % 5 == 0:
-            AI_speak('현재 시간은')
-            AI_speak(HH + '시')
-            AI_speak(mm + '분')
-            AI_speak('입니다')
-        if HH == '07' and int(mm) % 5 == 0:
-            AI_speak('현재 시간은')
-            AI_speak(HH + '시')
-            AI_speak(mm + '분')
-            AI_speak('입니다')
 
-        if HH == '08' and mm == '00':
-            AI_speak('현재 시간은')
-            AI_speak(HH + '시')
-            AI_speak(mm + '분')
-            AI_speak('입니다')
-            AI_speak('더이상 나가는 것을 지체하기 어렵습니다')
-        if HH == '06' and mm == '30':
-            AI_speak('음악을 재생합니다')
-        if HH == '08' and mm == '50':
-            AI_speak('업무시작 10분전입니다')
-            AI_speak('업무준비를 시작하세요')
-        if HH == '09' and mm == '00':
-            AI_speak('음악을 종료합니다')
-            # taskkill('Music.UI.exe')
-            # taskkill('ALSong.exe')
-            # time.sleep(10)
-        if HH == '11' and mm == '30':
-            AI_speak('점심시간입니다')
-        if HH == '11' and mm == '30':
-            AI_speak('음악을 재생합니다')
-        if HH == '11' and mm == '50':
-            AI_speak('12시 10분 전입니다')
-            AI_speak('주무실 것을 추천드립니다')
 
-time.sleep(60 * 3)
+# time.sleep(60 * 3)
 taskkill('ALSong.exe')
 
-# [DONE]
-# 1. 스케줄작업 수행기능
-# 2. 미세먼지 웹스크래핑 기능
-# 3. 1시간뒤 시스템 종료 예약 기능
-# [ING]
-# [TO DO]
-# 파이썬 멀티쓰레드로 만들자 정확히는 더블스레드로 하나의 싱글스레드는 스케쥴작업을 계속 수행을하고 다른 하나의 싱글쓰레드는 사용자로부터 request받아 response 하도록 하자
-# AI_listen()
-# AI_respon(usr_input)
-# usr_input = input("원하시는 명령코드를 입력해 주세요 >>> ")
-# 이걸 js + node.js  p5.speech.js   이렇게 합하면 될것 같은디.  일단 해보자.
+print("______________________________________________________  mkr [AI territory e] ")
 
-# "______________________________________________________  test_Territory e
+print("______________________________________________________  mkr [text mkr index] updated at 2023 02 18 09 38")
+# [디버깅용 코드]
+# [time initialization]
+# [module importing]
+# [main territory]
+# [function defination]
+# [constant defination]
+# [AI_respon defination]
+# [현재온도]
+# [초미세먼지]
+# [체감온도]
+# [자외선]
+# [습도]
+# [바람]
+# [미세먼지]
+# [기온]
+# [tmp.json 에 저장]
+# [json_str]
+# [json_obj]
+# [json_obj[i]['windSpd']][json obj 내부의 ]
+# [json 처리 시작]
+# [전체페이지 출력 시도]
+# [hourlyFcastListJson 들어있는 줄들 출력시도]
+# [_________]
+
+print("______________________________________________________  mkr [work schedule] updated at 2023 02 18 09 38")
+# [TO DO]
+# - STT 기능
+
+# [DONE]
+# - 하드코딩된 스케줄 작업 수행 기능
+# - 미세먼지 웹스크래핑 기능
+# - 초미세먼지 웹스크래핑 기능
+# - 종합날씨 웹스크래핑 기능
+# - 습도 웹스크래핑 기능
+# - 체감온도 웹스크래핑 기능
+# - 현재온도 웹스크래핑 기능
+# - 음악재생 기능
+# - 영상재생 기능
+# - 시간 시현기능 기능
+# - TTS 기능 -> AI_speak()
+# - 1시간 뒤 시스템 종료 예약 기능
+# - 즉시 시스템 종료 시도 기능
+
+# [ING]
+
+# [IDEA]
+# 파이썬 멀티쓰레드로 만들자 정확히는 더블스레드로 하나의 싱글스레드는 스케쥴작업을 계속 수행을하고 다른 하나의 싱글쓰레드는 사용자로부터 request받아 response 하도록 하자
+# py를 활용해서 gTTS 를 사용했는데 만족스럽지 않았다. 음성인식에 대해서 더 공부를 더 해야겠고... 아는 방법을 사용하면 편할것 같아 시도해보고...않되면..새로운 대체방법이 필요하다.
+# AI_listen() +  js + node.js[새로운방법] + p5.speech.js[아는방법] + AI_respon(usr_input_txt) 이렇게 합하면 될것 같은데. 해보자.
+# 그렇다고 해도 desktop은 mic device 가 없어서...사용이 불가하다...다른 디바이스에서 하도록 하는 것이 나아보인다.
+# ...android 에서 시도하는 것이 나을까?...
+# 1. android 에서 p5.speech.js를 통해서 음성을 듣고 foo.text를 curl 로 전송하면
+# 2. android에서 python server를 열어 PC에 text를 보내준다.[request.text]
+# 3. mp3 가 없다면 foo.text 의 내용대로 TTS를 통해서 mp3를 생성하고
+# 4. android는 서버를 열어뒀으니 다운로드 해가 라고 PC에게 말하고
+# 1차 재정리.
+# 1. android는 사용자의 voice 만 받아서 STT(p5.speech.js)를 통해서 voice 가 입력되면 request.txt를 만들고 server를 연다,
+# 2. android는 사용자의 voice 가 없을때 request.txt를 삭제한다. server를 종료한다,
+# 3. pc는 request.txt를 실시간으로[200ms 간격[임시]] download 해간다. request.txt에 내용이 뭔지 읽는다. 요청내용이 없으면 아무것도 하지 않고.
+# 4. 요청내용이 있으면 예약된 로직에 따라 요청대로 움직인다.
+# 갑자기 든생각. 로직을 직선으로 생각하지 말고 로직은 while break문처럼 뾰족뾰족한 루프의 형태가 같다는 생각이 들었다. 이 생각을 바탕으로 로직을 한번 그려보자.
+
+
+
+print("______________________________________________________  mkr [디버깅용 코드] ")
+#cls()
+#pause()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
