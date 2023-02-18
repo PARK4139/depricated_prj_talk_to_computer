@@ -1173,7 +1173,6 @@ while (True):
     AI_respon(usr_input_txt)
 
 
-
 # time.sleep(60 * 3)
 taskkill('ALSong.exe')
 
