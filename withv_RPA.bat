@@ -32,7 +32,7 @@ chcp 65001
 @echo off
 echo "______________________________________________________________ python 실행
 cls
-start /max py fake_AI.py
+start /max py withv_RPA.py
 REM echo "______________________________________________________________ debugging mode 
 REM timeout 10
 REM pause

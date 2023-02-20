@@ -24,30 +24,11 @@ import googletrans
 from random import randint, random
 
 print("______________________________________________________  mkr [constant defination] ")
-AI_available_cmd_code_list = [
-    # '0:fake AI 가용명령목록 조회',
-    # '`:single mode',
-    # '``:batch mode',
-    '`:advanced batch mode',
-    'jhppc1:jhppc1',
-    'remotedesktop:remote desktop',
-    # 'voice mode:voice mode',
-    # 'voiceless mode:voiceless mode',
-    '시간:시간',
-    '미세먼지랭킹:',
-    '종합날씨:',
-    '미세먼지:',
-    '초미세먼지:',
-    '공간:공간',
-    '체감온도:체감온도',
-    '가용명령개수:가용명령개수',
-    '종합날씨정보:종합날씨정보',
-    '식물조언:식물조언',
+AI_available_cmd_code_list = [ 
+    '`:advanced batch mode',  
     '스케쥴 모드:스케쥴 모드',
     'cls():cls()',
-    'taskkill(알송):_________',
-    '_________:_________',
-    '172.30.1.33:_________',
+    'taskkill(알송):_________', 
     'sd_s:shutdown',
     'sd_e:shutdown cancelation',
     'x:exit'
@@ -735,28 +716,7 @@ def AI_respon(usr_input_txt):
     elif usr_input_txt == '':
         AI_speak('아무것도 입력되지 않았습니다')
         AI_speak('명령코드를 입력해주세요')
-
-    elif usr_input_txt == '몇 시야' or usr_input_txt == '몇시야':
-        # AI_speak(getTimeAsStyle('5'))
-        # AI_speak('년')
-        # AI_speak(getTimeAsStyle('6'))
-        # AI_speak('월')
-        # AI_speak(getTimeAsStyle('7'))
-        # AI_speak('일')
-        AI_speak(getTimeAsStyle('8'))
-        AI_speak('시')
-        AI_speak(getTimeAsStyle('9'))
-        AI_speak('분')
-        AI_speak('입니다')
-
-    elif usr_input_txt == 'jhppc1':
-        jhppc1 = 'https://remotedesktop.google.com/access/session/b797cd99-b738-f4db-9b38-9a2e25a57a47'
-        AI_run(jhppc1)
-
-    elif usr_input_txt == 'remotedesktop':
-        remotedesktop = 'https://remotedesktop.google.com/access'
-        AI_run(remotedesktop)
-
+ 
     elif usr_input_txt == 'sd_s':
         ment="정말로 컴퓨터를 종료할까요 원하시면 Y를 눌러주세요"
         AI_speak(ment)
