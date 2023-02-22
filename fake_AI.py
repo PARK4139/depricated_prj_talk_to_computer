@@ -1261,6 +1261,16 @@ def convert_path_style(path_to_convert, style_no):
             path_to_convert = path_to_convert.replace("/", "\\")
             return path_to_convert
 
+    elif style_no=="3":
+        if "\\\\" in path_to_convert:
+            path_to_convert = path_to_convert.replace("\\\\", "\\")
+            return path_to_convert
+
+    elif style_no=="4":
+        if "//" in path_to_convert:
+            path_to_convert = path_to_convert.replace("//", "/")
+            return path_to_convert
+
     else:
         AI_speak('trouble shooting info id')
         AI_speak('yyyy MM dd HH mm ss')
