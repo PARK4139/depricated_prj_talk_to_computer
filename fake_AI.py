@@ -1248,6 +1248,24 @@ def AI_print(target_list):
         cnt += 1
 
 
+
+
+def convert_path_style(path_to_convert, style_no):
+    if style_no=="1":
+        if "\\" in path_to_convert:
+            path_to_convert = path_to_convert.replace("\\","/")
+            return path_to_convert
+
+    elif style_no=="2":
+        if "/" in path_to_convert:
+            path_to_convert = path_to_convert.replace("/", "\\")
+            return path_to_convert
+
+    else:
+        AI_speak('trouble shooting info id')
+        AI_speak('yyyy MM dd HH mm ss')
+
+
 print("______________________________________________________   [AI territory] ")
 cnt = 0
 started_time = 0

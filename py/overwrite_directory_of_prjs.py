@@ -764,14 +764,11 @@ def AI_respon(usr_input_txt):
                 pass
 
         except Exception as e:
-            print('______________________________________________________  error id 2023 02 18 13 58 s')
-            print('______________________________________________________  e info s')
-            print(e)
-            print('______________________________________________________  e info e')
-            print('______________________________________________________  trouble shooting info s')
+            print('______________________________________________________  troubleshooting id 2023 02 18 13 58 s')
+            print('______________________________________________________  trouble shooting info id s')
             traceback.print_exc(file=sys.stdout)
-            print('______________________________________________________  trouble shooting info e')
-            print('______________________________________________________  error id 2023 02 18 13 58 e')
+            print('______________________________________________________  trouble shooting info id e')
+            print('______________________________________________________  troubleshooting id 2023 02 18 13 58 e')
             AI_speak('익셉션이 발생하였습니다. 익셉션을 발생시키고 넘어가도록 하는 것은. 익셉션을 발생시키지 않고 처리하는 것보다 좋은 방법은 아닌 것 같습니다. 추후에 수정을 해주세요. 일단은 진행합니다')
             # AI_speak('익셉션이 발생하였습니다')
             # AI_speak('익셉션을 발생시키고 넘어가도록 하는 것은 익셉션을 발생시키지 않고 처리하는 것보다 좋은 방법은 아닌 것 같습니다')
@@ -784,6 +781,11 @@ def AI_speak(text):
     # address=u""+os.getcwd()+'\\mp3\\음성인식 준비되었습니다.mp3'
     # address=os.getcwd()+'\\mp3\\음성인식 준비되었습니다.mp3'
     address = os.getcwd() + '\\mp3\\' + text + '.mp3'
+    address_alternative = os.getcwd().replace("\\py","") + '\\mp3\\' + text + '.mp3'
+    if os.path.exists(address):
+        pass
+    else:
+        address = address_alternative
 
     if os.path.exists(address):
         # print('파일이 있어 재생을 시도합니다')
@@ -805,7 +807,14 @@ def AI_speak(text):
     else:
         # print('파일이 없어 생성을 시도합니다')
         mgr_gTTS = gTTS(text=text, lang='ko')
-        mgr_gTTS.save('./mp3/' + text + '.mp3')
+        path_default='./mp3/' + text + '.mp3'
+        path_alternative='../mp3/' + text + '.mp3'
+
+        if os.path.exists(path_default):
+            mgr_gTTS.save(path_default)
+        else:
+            mgr_gTTS.save(path_alternative)
+
         os.system('call "' + address + '"')  # call을 사용해서 동기처리를 기대했으나 되지 않음.대안이 필요하다.
 
         # mp3 파일의 재생 길이를 알아내서 그 시간만큼 sleep 시키는 코드를 추가[to do]
@@ -895,41 +904,57 @@ def AI_print(target_list):
         cnt += 1
 
 
+def convert_path_style(path_to_convert, style_no):
+    if style_no=="1":
+        if "\\" in path_to_convert:
+            path_to_convert = path_to_convert.replace("\\","/")
+            return path_to_convert
+
+    elif style_no=="2":
+        if "/" in path_to_convert:
+            path_to_convert = path_to_convert.replace("/", "\\")
+            return path_to_convert
+
+    else:
+        AI_speak('trouble shooting info id')
+        AI_speak('yyyy MM dd HH mm ss')
+
+
 print("______________________________________________________   [AI territory s] ")
 
 
 def deploy_dir(file_address_deploy,file_address_downloaded):
     yyyy_MM_dd_HH_mm_ss = str(time.strftime('%Y_%m_%d_%H_%M_%S'))
     try:
+
+        # AI_speak("목적지에 대한 통제권한 상승을 시도합니다")
+        # os.chmod(file_address_downloaded, 0o777)
+        # os.chmod(file_address_downloaded, 777)
+        # os.chmod(file_address_downloaded, 777)
         if os.path.exists(file_address_downloaded):
-            AI_speak("대체하려는 directory와 중복된 이름의 directory가 이미 목적지에 있습니다")
-            AI_speak("대체하려는 directory와 중복된 이름의 directory가 이미 목적지에 있습니다")
-            # AI_speak("목적지에 대한 통제권한 상승을 시도합니다")
-            # os.chmod(file_address_downloaded, 0o777) 
-            # os.chmod(file_address_downloaded, 777)
-            AI_speak("목적지에 있는 중복된 이름의 directory 삭제를 시도합니다")
+            # AI_speak("대체하려는 directory와 중복된 이름의 directory가 이미 목적지에 있습니다")
+            # AI_speak("목적지에 있는 중복된 이름의 directory 삭제를 시도합니다")
             # os.remove(file_address_downloaded)
-            shutil.rmtree(file_address_downloaded)
+            # print("mkr"+convert_path_style(file_address_downloaded,"1"))
+            # shutil.rmtree(convert_path_style(file_address_downloaded,"1"))
+            os.system('echo Y | rmdir /s "'+file_address_downloaded+'"')
             AI_speak("목적지에 복제를 시도합니다")
             # os.os.chdir(file_address_downloaded)
             # os.os.chdir('../)
             # os.os.chdir('..\)
             # shutil.copy2(file_address_deploy,file_address_downloaded)
-            shutil.copytree(file_address_deploy,file_address_downloaded)
+            shutil.copytree(convert_path_style(file_address_deploy,"1"),convert_path_style(file_address_downloaded,"1"))
             AI_speak("directory 대체를 완료했습니다")
             # os.system("bandizip.exe c "+file_address_deploy+" - "+yyyy_MM_dd_HH_mm_ss+" "+file_address_deploy+"")
         else:
             AI_speak("목적지에 복제를 시도합니다")
-            shutil.copy2(file_address_deploy,file_address_downloaded)
+            # shutil.copy2(file_address_deploy,file_address_downloaded)
+            shutil.copytree(convert_path_style(file_address_deploy, "1"),convert_path_style(file_address_downloaded, "1"))
+
     except Exception as e:
-            print('______________________________________________________  error id 2023 02 22 23 18 s')
-            print('______________________________________________________  e info s')
-            print(e)
-            print('______________________________________________________  e info e')
-            print('______________________________________________________  trouble shooting info s')
+            print('______________________________________________________  troubleshooting id 2023 02 22 23 18 s')
             traceback.print_exc(file=sys.stdout)
-            print('______________________________________________________  trouble shooting info e')
-            print('______________________________________________________  error id 2023 02 22 23 18 e')
+            print('______________________________________________________  troubleshooting id 2023 02 22 23 18 e')
             AI_speak('익셉션이 발생하였습니다')
 
 
