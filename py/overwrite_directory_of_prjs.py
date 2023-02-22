@@ -932,8 +932,8 @@ def deploy_dir(file_address_deploy,file_address_downloaded):
         # os.chmod(file_address_downloaded, 777)
         # os.chmod(file_address_downloaded, 777)
         if os.path.exists(file_address_downloaded):
-            # AI_speak("대체하려는 directory와 중복된 이름의 directory가 이미 목적지에 있습니다")
-            # AI_speak("목적지에 있는 중복된 이름의 directory 삭제를 시도합니다")
+            AI_speak("대체하려는 directory와 중복된 이름의 directory가 이미 목적지에 있습니다")
+            AI_speak("목적지에 있는 중복된 이름의 directory 삭제를 시도합니다")
             # os.remove(file_address_downloaded)
             # print("mkr"+convert_path_style(file_address_downloaded,"1"))
             # shutil.rmtree(convert_path_style(file_address_downloaded,"1"))
