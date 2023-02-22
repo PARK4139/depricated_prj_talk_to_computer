@@ -9,6 +9,7 @@ import sys
 import speech_recognition as sr
 import requests
 import psutil  # 실행중인 프로세스 및 시스템 활용 라이브러리
+import shutil
 import os
 import os
 import json

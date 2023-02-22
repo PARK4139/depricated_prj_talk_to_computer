@@ -1,14 +1,3 @@
-sample that have success history 
-
-
-cls
-py AI_TTS.py "음성인식 테스트입니다"
-py AI_translate_eng_to_kor.py "성공하였습니다" > `.txt
-py AI_translate_kor_to_eng.py "did success" > `.txt
-py AI_youtube.py "https://www.youtube.com/watch?v=varoKuIDkms"
-
-
-
 chcp 65001
 setlocal
 set deployed="C:\Users\WIN10PROPC3\Desktop\SERVER_ALPHA\[TO DO]\prj_talk_to_computer\py"
@@ -17,6 +6,6 @@ set overwrited2="C:\Users\WIN10PROPC3\Desktop\SERVER_ALPHA\[TO DO]\prj_mgr\py"
 set overwrited3=
 set overwrited4=
 set overwrited5=
+cd py
 py overwrite_directory_of_prjs.py %deployed% %overwrited1%
 py overwrite_directory_of_prjs.py %deployed% %overwrited2%
-

@@ -36,56 +36,17 @@ def startRecordCommand(file_address):
 def endRecordCommand():
     sys.stdout.close()
 
- 
-# print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>gTTS style1 s")
-# text='구글의 AI 음성인식 기술을 활용한 TTS 기능 연습입니다.한국인여성목소리는 설정할 수 없다고 합니다'
-# lang='ko'
-# gTTS_Mgr = gTTS(text=text, lang=lang )
-
-# file_path = os.getcwd()+'\\mp3\\'+text+'.mp3'
-# if os.path.exists(file_path):
-    # os.startfile(file_path)
-# else:
-    # gTTS_Mgr.save(file_path)
-    # os.startfile(file_path)
-
- 
-
-# print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>gTTS style2 s")
-# yyyyMMddHHmmss=now.strftime('%Y %m %d %H %M %S')
-# file_path='.\\txt\\' + 'tmp' + yyyyMMddHHmmss+'.txt'
-
-# startRecordCommand(file_path)   
-# print(yyyyMMddHHmmss)
-# print("이것은 TTS 기능의 초석이 될 테스트 샘플입니다.")
-# print("이것은 파이썬 베이스로 구글의 gTTS 를 활용한 TTS 입니다.")
-# print("구글의 AI 음성인식 기술을 활용한 TTS 기능 연습입니다.")
-# print("한국인여성목소리는 설정할 수 없다고 합니다.")
-
-
-# endRecordCommand()
-
-
-# file_path='./txt/tmp'+ yyyyMMddHHmmss+'.txt'
-# with open(file_path,'r',encoding='utf-8') as f:
-    # text = f.read()
-    # print(text)
-
-# lang='ko'
-# gTTS_Mgr = gTTS(text=text, lang=lang )
-# file_path = os.getcwd()+'\\mp3\\'+text+'.mp3'
-# if os.path.exists(file_path):
-    # os.startfile(file_path)
-# else:
-    # gTTS_Mgr.save(file_path)#너무 길어서 안되는 것 같다
-    
-    
-
+        
 
 # print("_____________________________________________________ AI_TTS.py s")
 
+
+
 # text='테스트'
-text=sys.argv[1]
+try:
+    text=sys.argv[1]
+except:
+    text='exception 이 발생하였습니다'
 
 
 lang='ko'
@@ -95,8 +56,9 @@ gTTS_Mgr = gTTS(text=text, lang=lang )
 # chdir('../..')#부모의 부모
 # chdir('../../..')# 부모의 부모의 부모?
 chdir('..')#부모
-
 tmp = './mp3'
+
+
 if os.path.exists(tmp):
     chdir(tmp)
 else:
@@ -105,8 +67,32 @@ else:
     
 if os.path.exists(file_path):
     os.startfile(file_path)
+       
+    # mp3 파일의 재생 길이를 알아내서 그 시간만큼 sleep 시키는 코드를 추가[to do]
+    length_of_mp3 = get_length_of_mp3(file_path)
+    # print(length_of_mp3)
+    length_of_mp3 = float(length_of_mp3)
+    # print(length_of_mp3)
+    length_of_mp3 = round(length_of_mp3, 1)
+    # print(length_of_mp3)
+    # time.sleep(length_of_mp3*0.95)
+    # time.sleep(length_of_mp3*1.00)
+    time.sleep(length_of_mp3 * 1.05)
+    taskkill('ALSong.exe')
 else:
     gTTS_Mgr.save(file_path)
     os.startfile(file_path)    
+    
+    # mp3 파일의 재생 길이를 알아내서 그 시간만큼 sleep 시키는 코드를 추가[to do]
+    length_of_mp3 = get_length_of_mp3(address)
+    # print(length_of_mp3)
+    length_of_mp3 = float(length_of_mp3)
+    # print(length_of_mp3)
+    length_of_mp3 = round(length_of_mp3, 1)
+    # print(length_of_mp3)
+    # time.sleep(length_of_mp3*0.95)
+    # time.sleep(length_of_mp3*1.00)
+    time.sleep(length_of_mp3 * 1.05)
+    taskkill('ALSong.exe')
     
 # print("_____________________________________________________ AI_TTS.py e")
