@@ -81,11 +81,12 @@ def endRecordCommand():
     
     
 
-print(sys.argv)
-print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>gTTS style3 s")
-text=sys.argv[1]
+
+# print("_____________________________________________________ AI_TTS.py s")
 
 # text='테스트'
+text=sys.argv[1]
+
 
 lang='ko'
 file_path = text+'.mp3'
@@ -108,4 +109,4 @@ else:
     gTTS_Mgr.save(file_path)
     os.startfile(file_path)    
     
-    
+# print("_____________________________________________________ AI_TTS.py e")
