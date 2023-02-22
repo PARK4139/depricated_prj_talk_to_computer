@@ -68,31 +68,10 @@ else:
 if os.path.exists(file_path):
     os.startfile(file_path)
        
-    # mp3 파일의 재생 길이를 알아내서 그 시간만큼 sleep 시키는 코드를 추가[to do]
-    length_of_mp3 = get_length_of_mp3(file_path)
-    # print(length_of_mp3)
-    length_of_mp3 = float(length_of_mp3)
-    # print(length_of_mp3)
-    length_of_mp3 = round(length_of_mp3, 1)
-    # print(length_of_mp3)
-    # time.sleep(length_of_mp3*0.95)
-    # time.sleep(length_of_mp3*1.00)
-    time.sleep(length_of_mp3 * 1.05)
-    taskkill('ALSong.exe')
+    
 else:
     gTTS_Mgr.save(file_path)
     os.startfile(file_path)    
     
-    # mp3 파일의 재생 길이를 알아내서 그 시간만큼 sleep 시키는 코드를 추가[to do]
-    length_of_mp3 = get_length_of_mp3(address)
-    # print(length_of_mp3)
-    length_of_mp3 = float(length_of_mp3)
-    # print(length_of_mp3)
-    length_of_mp3 = round(length_of_mp3, 1)
-    # print(length_of_mp3)
-    # time.sleep(length_of_mp3*0.95)
-    # time.sleep(length_of_mp3*1.00)
-    time.sleep(length_of_mp3 * 1.05)
-    taskkill('ALSong.exe')
     
 # print("_____________________________________________________ AI_TTS.py e")
