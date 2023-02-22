@@ -1,0 +1,6 @@
+Win32 Disk Imager
+
+https://sourceforge.net/projects/win32diskimager/files/latest/download
+
+THIS PROGRAM CAN MAKE CLONE MICRO SD CARDS
+
