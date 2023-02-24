@@ -26,5 +26,6 @@ git status | find "clean"
 REM pause
 cd py
 call py AI_TTS.py "깃허브에 프로젝트 커밋시도를 완료했습니다"
-timeout 5
+timeout 3
 taskkill -im Alsong.exe
+timeout 3
