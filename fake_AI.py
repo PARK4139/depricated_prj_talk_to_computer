@@ -7,6 +7,7 @@ import time
 import sys
 import sys
 import speech_recognition as sr
+import pyttsx3
 import requests
 import psutil  # 실행중인 프로세스 및 시스템 활용 라이브러리
 import shutil
@@ -1277,6 +1278,12 @@ def convert_path_style(path_to_convert, style_no):
 
 
 print("______________________________________________________   [AI territory] ")
+
+while(True):
+    AI_listen()
+
+
+
 cnt = 0
 started_time = 0
 while (True):
@@ -1333,76 +1340,6 @@ while (True):
 taskkill('ALSong.exe')
 
 print("______________________________________________________   [AI territory e] ")
-
-print("______________________________________________________   [text mkr index] updated at 2023 02 18 09 38")
-# [디버깅용 코드]
-# [time initialization]
-# [module importing]
-# [main territory]
-# [function ]
-# [constant ]
-# [AI_respon ]
-# [현재온도]
-# [초미세먼지]
-# [체감온도]
-# [자외선]
-# [습도]
-# [바람]
-# [미세먼지]
-# [기온]
-# [tmp.json 에 저장]
-# [json_str]
-# [json_obj]
-# [json_obj[i]['windSpd']][json obj 내부의 ]
-# [json 처리 시작]
-# [전체페이지 출력 시도]
-# [hourlyFcastListJson 들어있는 줄들 출력시도]
-# [_________]
-
-print("______________________________________________________   [work schedule] updated at 2023 02 18 09 38")
-# [TO DO]
-# - STT 기능
-
-# [DONE]
-# - 하드코딩된 스케줄 작업 수행 기능
-# - 미세먼지 웹스크래핑 기능
-# - 초미세먼지 웹스크래핑 기능
-# - 종합날씨 웹스크래핑 기능
-# - 습도 웹스크래핑 기능
-# - 체감온도 웹스크래핑 기능
-# - 현재온도 웹스크래핑 기능
-# - 음악재생 기능
-# - 영상재생 기능
-# - 시간 시현기능 기능
-# - TTS 기능 -> AI_speak()
-# - 1시간 뒤 시스템 종료 예약 기능
-# - 즉시 시스템 종료 시도 기능
-
-# [ING]
-
-# [IDEA]
-# 파이썬 멀티쓰레드로 만들자 정확히는 더블스레드로 하나의 싱글스레드는 스케쥴작업을 계속 수행을하고 다른 하나의 싱글쓰레드는 사용자로부터 request받아 response 하도록 하자
-# py를 활용해서 gTTS 를 사용했는데 만족스럽지 않았다. 음성인식에 대해서 더 공부를 더 해야겠고... 아는 방법을 사용하면 편할것 같아 시도해보고...않되면..새로운 대체방법이 필요하다.
-# AI_listen() +  js + node.js[새로운방법] + p5.speech.js[아는방법] + AI_respon(usr_input_txt) 이렇게 합하면 될것 같은데. 해보자.
-# 그렇다고 해도 desktop은 mic device 가 없어서...사용이 불가하다...다른 디바이스에서 하도록 하는 것이 나아보인다.
-# ...android 에서 시도하는 것이 나을까?...
-# 1. android 에서 p5.speech.js를 통해서 음성을 듣고 foo.text를 curl 로 전송하면
-# 2. android에서 python server를 열어 PC에 text를 보내준다.[request.text]
-# 3. mp3 가 없다면 foo.text 의 내용대로 TTS를 통해서 mp3를 생성하고
-# 4. android는 서버를 열어뒀으니 다운로드 해가 라고 PC에게 말하고
-# 1차 재정리.
-# 1. android는 사용자의 voice 만 받아서 STT(p5.speech.js)를 통해서 voice 가 입력되면 request.txt를 만들고 server를 연다,
-# 2. android는 사용자의 voice 가 없을때 request.txt를 삭제한다. server를 종료한다,
-# 3. pc는 request.txt를 실시간으로[200ms 간격[임시]] download 해간다. request.txt에 내용이 뭔지 읽는다. 요청내용이 없으면 아무것도 하지 않고.
-# 4. 요청내용이 있으면 예약된 로직에 따라 요청대로 움직인다.
-# 갑자기 든생각. 로직을 직선으로 생각하지 말고 로직은 while break문처럼 뾰족뾰족한 루프의 형태가 같다는 생각이 들었다. 이 생각을 바탕으로 로직을 한번 그려보자.
-
-#웹 크롤링을 시도하는 이들을 막기 위한 방법이 꽤 많은 것 같다. beautiful soup 으로 iframe, js의 처리가 된 상태의 내용을 못 가져온다는 것을 사용하며 체감하게 되었다.
-#selenium 을 한번 써보려고 한다. 자동화탐지를 우회하기 위해 time 모듈을 종종 사용해서, 시간은 좀 걸리지만 꽤 좋은 것 같다.
-#아 그리고 특정 웹에 들어가, 특정 페이지의 특정 위치에서 화면을 캡쳐해서 특정부분의 text 를 OCR 로 추출하여 TTS 하도록 하면 어떤가 싶었다.
-
-
-
 
 
 print("______________________________________________________   [디버깅용 코드] ")

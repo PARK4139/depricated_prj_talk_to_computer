@@ -1,0 +1,244 @@
+_____________________________________________________________________________________________________ [TO DO]
+
+
+_____________________________________________________________________________________________________ [ING MKR S]
+_____________________________________________________________________________________________________ [ING MKR E]
+
+
+prj_torrent      [private]
+py AI_donwload_torrent.py   
+토렌트 마그넷 주소 웹크롤링
+
+:: 참고자료
+https://yeowool0217.tistory.com/515
+
+
+1페이지
+"https://nyaa.si/?f=0&c=0_0&q=SubsPlease+1080&s=id&o=desc"
+
+14페이지
+"https://nyaa.si/?f=0&c=0_0&q=SubsPlease+1080&s=id&o=desc&p=14"
+
+
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>기온
+dataWebLocation = "https://www.google.com/search?q=%EA%B8%B0%EC%98%A8&oq=%EA%B8%B0%EC%98%A8&aqs=chrome..69i57j35i39j46i131i199i433i465i512j0i131i433i512l3j46i199i465i512j69i61.1706j1j7&sourceid=chrome&ie=UTF-8"
+copied_html_selector = '#wob_tm'
+구글 기온정보
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>습도
+dataWebLocation = "https://www.google.com/search?q=%EA%B8%B0%EC%98%A8&oq=%EA%B8%B0%EC%98%A8&aqs=chrome..69i57j35i39j46i131i199i433i465i512j0i131i433i512l3j46i199i465i512j69i61.1706j1j7&sourceid=chrome&ie=UTF-8"
+copied_html_selector = '#wob_hm'
+구글 습도정보
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>바람
+dataWebLocation = "https://www.google.com/search?q=%EA%B8%B0%EC%98%A8&oq=%EA%B8%B0%EC%98%A8&aqs=chrome..69i57j35i39j46i131i199i433i465i512j0i131i433i512l3j46i199i465i512j69i61.1706j1j7&sourceid=chrome&ie=UTF-8"
+copied_html_selector = '#wob_ws' 
+구글 바람정보
+
+
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>cmd 명령어 사용 로그 텍스트로 저장
+doskey /history > doskey_history.log
+
+
+
+
+prj_talk_to_computer 에 20분/30분 마다 스케줄랜덤추천 되도록
+#고빈도추천스케쥴/저빈도추천스케줄 을 나눌것.
+추천스케줄을 말씀드립니다
+블루베리는 오늘드셨나요. 건강에 좋은 블루베리를 먹는것은 어떨까요
+양치는 하셨나요. 간단한 물가글이라도 수행해보세요
+영양보충제는 오늘드셨나요. 구미형태의 영향보충제도 맛도 좋습니다. 지금 하나 꺼내 먹으면 어떨까요
+오늘 웨이트트래이닝은 하셨나요. 팔굽혀펴기 10회를 수행하세요
+오늘 웨이트트래이닝은 하셨나요. 런지 10회를 수행하세요
+오늘 웨이트트래이닝은 하셨나요. 스쿼트 10회를 수행하세요
+오늘 스트레칭은 하셨나요. 목검을 아래에서 위로 휘두르듯 움직이는 스트레칭를 수행하세요
+
+
+
+
+
+
+
+
+우리집은 서랍장
+애틋한 그리움이 흐르는 곳
+
+
+
+
+
+이 패턴으로 문제는 없을 것 같은데
+이 패턴이 바뀌면 대응이 필요할 것
+
+
+
+
+
+게임 재미
+발각되었을때의 쫄깃쫄깃함
+
+
+
+다메다요....곤난자..
+
+
+
+책상위를 모두 매트리스를 깔면 
+어떤가 
+손목에도 좋을 것 같은 참신함이 있을 것 같은데!!
+
+
+
+py AI_donwload_youtube.py   로 이름 바꾸자
+
+
+
+
+pyQT5 로 텍스트 에디터 GUI tool 만들고
+cmd를 열고 연동하여 
+드래그한 텍스트 부분을 cmd에서 DB client 명령어 처럼 실행하기
+
+
+
+except:
+	AI_print("계획업무 수행중 특이 케이스를 발견하였습니다. 확인해주세요")
+
+
+
+
+AI_speak 에 start /min 을 추가해서 mp3를 실행하면 될것 같은데 via start /min > 실패
+음성을 speaker server 에서 실행이 되도록 하면 어떤가 speaker server 에 txt를 보내고. 해당 텍스트가 없다면 mp3를 만들어 저장하고 실행하도록. via speaker server > ?
+
+
+
+
+
+
+
+Android 클라이언트 program feat bluestack
+client ----(voiced.mp3)----> android(voice command client) ----(requested.txt)----> server(high performance work processing) ----(reponsed.txt)---->
+android ----(voiced.mp3)----> client
+
+
+
+
+
+조코딩
+매우 쉽게 가르쳐준다. 난 이게 좋다
+이거 쉽다 좋다매우매우 좋다
+https://www.youtube.com/watch?v=1t9nKrsdkdw
+
+
+
+
+
+내가 만든 파이썬 파일들의 경로를 환경변수에 추가를 해서 아무 디렉토리에서나 실행할 수 있도록 해보자
+
+
+
+
+project digital world !!!!!!!!!!!!!!!!!!!!!digital 휴양지!!!!!!!!!!!!
+project digital world !!!!!!!!!!!!!!!!!!!!!digital cafe!!!!!!!!!!!!
+project digital world !!!!!!!!!!!!!!!!!!!!!digital jungle!!!!!!!!!!!!
+project digital world !!!!!!!!!!!!!!!!!!!!!digital desert!!!!!!!!!!!!
+오늘같이 가녀린 비가 내리며
+메타휴먼 텍스쳐 커스터마이징
+언리얼 엔진용 메타휴먼 플러그인 다운로드
+
+
+
++230[월급]
+-55[월세]
+-10[관리비]
+-5[통신비]
+
+
+
+def record_background_sound_as_mp3_file():
+    pass
+
+
+def get_info_via_빅스비(question):
+	ment=("빅스비 "+question)
+	# ment=("헤이 빅스비 "+question)
+	# AI_TTS(ment)
+	os.system('py AI_TTS.py "'+ment+'"')
+	record_background_sound_as_mp3_file()
+		
+	
+question=""
+get_info_via_빅스비(question)
+
+
+
+# prj_chatGPT
+idea1=chatGPT 가 chatGPT 에게 일을 시키도록 한다면 어떻게 될까
+chatGPT 가 잘 알아듣는 명령을 테스트하고 패턴을 잘 기록 정리해보자
+print("______________________________________________________   [text mkr index] updated at 2023 02 18 09 38")
+# [디버깅용 코드]
+# [time initialization]
+# [module importing]
+# [main territory]
+# [function ]
+# [constant ]
+# [AI_respon ]
+# [현재온도]
+# [초미세먼지]
+# [체감온도]
+# [자외선]
+# [습도]
+# [바람]
+# [미세먼지]
+# [기온]
+# [tmp.json 에 저장]
+# [json_str]
+# [json_obj]
+# [json_obj[i]['windSpd']][json obj 내부의 ]
+# [json 처리 시작]
+# [전체페이지 출력 시도]
+# [hourlyFcastListJson 들어있는 줄들 출력시도]
+# [_________]
+
+print("______________________________________________________   [work schedule] updated at 2023 02 18 09 38")
+# [TO DO]
+# - STT 기능
+
+# [DONE]
+# - 하드코딩된 스케줄 작업 수행 기능
+# - 미세먼지 웹스크래핑 기능
+# - 초미세먼지 웹스크래핑 기능
+# - 종합날씨 웹스크래핑 기능
+# - 습도 웹스크래핑 기능
+# - 체감온도 웹스크래핑 기능
+# - 현재온도 웹스크래핑 기능
+# - 음악재생 기능
+# - 영상재생 기능
+# - 시간 시현기능 기능
+# - TTS 기능 -> AI_speak()
+# - 1시간 뒤 시스템 종료 예약 기능
+# - 즉시 시스템 종료 시도 기능
+
+_____________________________________________________________________________________________________ [IDEA]
+# 파이썬 멀티쓰레드로 만들자 정확히는 더블스레드로 하나의 싱글스레드는 스케쥴작업을 계속 수행을하고 다른 하나의 싱글쓰레드는 사용자로부터 request받아 response 하도록 하자
+# py를 활용해서 gTTS 를 사용했는데 만족스럽지 않았다. 음성인식에 대해서 더 공부를 더 해야겠고... 아는 방법을 사용하면 편할것 같아 시도해보고...않되면..새로운 대체방법이 필요하다.
+# AI_listen() +  js + node.js[새로운방법] + p5.speech.js[아는방법] + AI_respon(usr_input_txt) 이렇게 합하면 될것 같은데. 해보자.
+# 그렇다고 해도 desktop은 mic device 가 없어서...사용이 불가하다...다른 디바이스에서 하도록 하는 것이 나아보인다.
+# ...android 에서 시도하는 것이 나을까?...
+# 1. android 에서 p5.speech.js를 통해서 음성을 듣고 foo.text를 curl 로 전송하면
+# 2. android에서 python server를 열어 PC에 text를 보내준다.[request.text]
+# 3. mp3 가 없다면 foo.text 의 내용대로 TTS를 통해서 mp3를 생성하고
+# 4. android는 서버를 열어뒀으니 다운로드 해가 라고 PC에게 말하고
+# 1차 재정리.
+# 1. android는 사용자의 voice 만 받아서 STT(p5.speech.js)를 통해서 voice 가 입력되면 request.txt를 만들고 server를 연다,
+# 2. android는 사용자의 voice 가 없을때 request.txt를 삭제한다. server를 종료한다,
+# 3. pc는 request.txt를 실시간으로[200ms 간격[임시]] download 해간다. request.txt에 내용이 뭔지 읽는다. 요청내용이 없으면 아무것도 하지 않고.
+# 4. 요청내용이 있으면 예약된 로직에 따라 요청대로 움직인다.
+# 갑자기 든생각. 로직을 직선으로 생각하지 말고 로직은 while break문처럼 뾰족뾰족한 루프의 형태가 같다는 생각이 들었다. 이 생각을 바탕으로 로직을 한번 그려보자.
+
+#웹 크롤링을 시도하는 이들을 막기 위한 방법이 꽤 많은 것 같다. beautiful soup 으로 iframe, js의 처리가 된 상태의 내용을 못 가져온다는 것을 사용하며 체감하게 되었다.
+#selenium 을 한번 써보려고 한다. 자동화탐지를 우회하기 위해 time 모듈을 종종 사용해서, 시간은 좀 걸리지만 꽤 좋은 것 같다.
+#아 그리고 특정 웹에 들어가, 특정 페이지의 특정 위치에서 화면을 캡쳐해서 특정부분의 text 를 OCR 로 추출하여 TTS 하도록 하면 어떤가 싶었다.
+
+
+_____________________________________________________________________________________________________ [DONE]
+
+

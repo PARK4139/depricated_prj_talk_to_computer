@@ -1,11 +1,18 @@
 sample that have success history 
 
-
 cls
-py AI_TTS.py "음성인식 테스트입니다"
-py AI_translate_eng_to_kor.py "성공하였습니다" > `.txt
-py AI_translate_kor_to_eng.py "did success" > `.txt
-py AI_youtube.py "https://www.youtube.com/watch?v=varoKuIDkms"
+
+chcp 65001
+setlocal
+
+
+cmd /k cd .. && set started_directory=%cd% && cd.. && cd.. && cd.. && cd %started_directory%
+call py AI_TTS.py "빅스비" 
+call py AI_TTS.py "미세먼지 알려줘"
+cmd /k py AI_translate_eng_to_kor.py "성공하였습니다" > translated_to_kor.txt 
+cmd /k py AI_translate_kor_to_eng.py "did success" > translated_to_eng.txt
+cmd /k py AI_youtube.py "https://www.youtube.com/watch?v=TwNH3R8jlOQ"
+cmd /k py AI_youtube.py "https://www.youtube.com/watch?v=H451I5XDsB0" & py AI_youtube.py "https://www.youtube.com/watch?v=H451I5XDsB0"
 
 
 
@@ -19,4 +26,5 @@ set overwrited4=
 set overwrited5=
 py overwrite_directory_of_prjs.py %deployed% %overwrited1%
 py overwrite_directory_of_prjs.py %deployed% %overwrited2%
+
 

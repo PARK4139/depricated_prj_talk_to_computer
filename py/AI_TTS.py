@@ -68,10 +68,9 @@ else:
 if os.path.exists(file_path):
     os.startfile(file_path)
        
-    
 else:
     gTTS_Mgr.save(file_path)
-    os.startfile(file_path)    
+    os.startfile(file_path)
     
     
 # print("_____________________________________________________ AI_TTS.py e")

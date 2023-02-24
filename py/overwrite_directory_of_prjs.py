@@ -926,12 +926,12 @@ print("______________________________________________________   [AI territory s]
 def deploy_dir(file_address_deploy,file_address_downloaded):
     yyyy_MM_dd_HH_mm_ss = str(time.strftime('%Y_%m_%d_%H_%M_%S'))
     try:
-
         # AI_speak("목적지에 대한 통제권한 상승을 시도합니다")
         # os.chmod(file_address_downloaded, 0o777)
         # os.chmod(file_address_downloaded, 777)
         # os.chmod(file_address_downloaded, 777)
         if os.path.exists(file_address_downloaded):
+            AI_speak("대체하려는 directory와 중복된 이름의 directory를 발견하였습니다")
             # AI_speak("대체하려는 directory와 중복된 이름의 directory가 이미 목적지에 있습니다")
             # AI_speak("목적지에 있는 중복된 이름의 directory 삭제를 시도합니다")
             # os.remove(file_address_downloaded)
