@@ -27,5 +27,5 @@ REM pause
 cd py
 call py AI_TTS.py "깃허브에 프로젝트 커밋시도를 완료했습니다"
 timeout 3
-taskkill -im Alsong.exe
+taskkill -im alsong.exe
 timeout 3
