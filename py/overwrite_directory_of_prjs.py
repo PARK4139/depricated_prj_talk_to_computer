@@ -923,13 +923,14 @@ def convert_path_style(path_to_convert, style_no):
 print("______________________________________________________   [AI territory s] ")
 
 
-def deploy_dir(target_address_deploy, target_address_downloaded):
+def deploy_dir(target_address_deploed, target_address_downloaded):
     yyyy_MM_dd_HH_mm_ss = str(time.strftime('%Y_%m_%d_%H_%M_%S'))
     try:
         # AI_speak("목적지에 대한 통제권한 상승을 시도합니다")
         # os.chmod(target_address_downloaded, 0o777)
         # os.chmod(target_address_downloaded, 777)
         # os.chmod(target_address_downloaded, 777)
+        os.system('chcp 65001')
         if os.path.exists(target_address_downloaded):
             AI_speak("대체하려는 directory와 중복된 이름의 directory를 발견하였습니다")
             # AI_speak("대체하려는 directory와 중복된 이름의 directory가 이미 목적지에 있습니다")
@@ -938,27 +939,25 @@ def deploy_dir(target_address_deploy, target_address_downloaded):
             # print("mkr"+convert_path_style(target_address_downloaded,"1"))
             # shutil.rmtree(convert_path_style(target_address_downloaded,"1"))
             os.system('echo Y | rmdir /s "' + target_address_downloaded + '"')
-            # AI_speak("목적지에 복제를 시도합니다")
             # os.os.chdir(target_address_downloaded)
             # shutil.copy2(target_address_deploy,target_address_downloaded)
-            if os.path.isfile(target_address_downloaded):
-                os.system('copy "' + target_address_downloaded + '" "' + target_address_downloaded + '"')
-                # os.system('echo Y | copy "'+target_address_downloaded+'"')
+            if os.path.isfile(target_address_deploed):
+                os.system('copy "' + target_address_deploed + '" "' + target_address_downloaded + '"')
+                # os.system('echo Y | copy "'+target_address_deploy+ '" "' + target_address_downloaded + '"')
             else:
-                shutil.copytree(convert_path_style(target_address_deploy,"1"), convert_path_style(target_address_downloaded, "1"))
+                shutil.copytree(convert_path_style(target_address_deploed, "1"), convert_path_style(target_address_downloaded, "1"))
             AI_speak("directory 대체를 완료했습니다")
             # os.system("bandizip.exe c "+target_address_deploy+" - "+yyyy_MM_dd_HH_mm_ss+" "+target_address_deploy+"")
         else:
-            AI_speak("대체하려는 directory와 중복된 이름의 directory가 없습니다")
+            AI_speak("목적지에 중복된 이름의 directory가 없습니다")
             # AI_speak("목적지에 복제를 시도합니다")
             # shutil.copy2(target_address_deploy,target_address_downloaded)
-            if os.path.isfile(target_address_downloaded):
-                os.system('chcp 65001')
-                # os.system('copy "' + target_address_downloaded + '" "' + target_address_downloaded + '"')
-                os.system('echo Y | copy "'+target_address_downloaded+'" "' + target_address_downloaded + '"')
+            if os.path.isfile(target_address_deploed):
+                os.system('copy "' + target_address_deploed + '" "' + target_address_downloaded + '"')
+                # os.system('echo Y | copy "'+target_address_deploy+ '" "' + target_address_downloaded + '"')
             else:
                 os.system('chcp 65001')
-                shutil.copytree(convert_path_style(target_address_deploy, "1"),convert_path_style(target_address_downloaded, "1"))
+                shutil.copytree(convert_path_style(target_address_deploed, "1"), convert_path_style(target_address_downloaded, "1"))
             AI_speak("directory 대체를 완료했습니다")
 
     except Exception as e:
@@ -972,15 +971,15 @@ def deploy_dir(target_address_deploy, target_address_downloaded):
 
 
 # print("______________________________________________________   [test] ")
-# target_address_deploy=r"C:\Users\WIN10PROPC3\Downloads\SERVER_ALPHA\[TO DO]\prj_talk_to_computer\git add push commit.bat"
-# target_address_downloaded=r"C:\Users\WIN10PROPC3\Downloads\SERVER_ALPHA\[TO DO]\PRIVATE_RECORDS\git add push commit.bat"
-# deploy_dir(target_address_deploy,target_address_downloaded)
-print("______________________________________________________   [op] ")
-print(sys.argv[1])
-print(sys.argv[2])
-target_address_deploy=sys.argv[1]
-target_address_downloaded=sys.argv[2]
+target_address_deploy=r"C:\Users\WIN10PROPC3\Downloads\SERVER_ALPHA\[TO DO]\prj_talk_to_computer\git add push commit.bat"
+target_address_downloaded=r"C:\Users\WIN10PROPC3\Downloads\SERVER_ALPHA\[TO DO]\PRIVATE_RECORDS\git add push commit.bat"
 deploy_dir(target_address_deploy,target_address_downloaded)
+print("______________________________________________________   [op] ")
+# print(sys.argv[1])
+# print(sys.argv[2])
+# target_address_deploy=sys.argv[1]
+# target_address_downloaded=sys.argv[2]
+# deploy_dir(target_address_deploy,target_address_downloaded)
 
 
 print("______________________________________________________   [AI territory e] ")

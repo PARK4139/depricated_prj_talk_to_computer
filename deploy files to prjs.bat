@@ -14,7 +14,7 @@ REM py overwrite_directory_of_prjs.py %deployed% %overwrited4%
 REM py overwrite_directory_of_prjs.py %deployed% %overwrited5%
 
 
-이 파일을 파이썬으로 동작하드록 수정하자
+이 파일을 파이썬으로 추가 수정하자
 
 해당 패스가 있으면
 	deploy 
