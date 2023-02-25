@@ -181,6 +181,25 @@ cd %from_path%
 rmdir .png  
 
 
+:: avif
+setlocal
+set foo =.avif
+for %%i in (*.avif) do if not "%~nx0"=="%%~nxi" (
+if not exist "%%~xi\" md "%%~xi"
+move "%%i" "%%~xi"
+) 
+set as=imgs
+mkdir %as%
+set from_path=%cd%
+set to_path=%cd%\%as%
+cd .avif
+move "*.avif" "%to_path%"
+cd %from_path% 
+rmdir .avif
+ 
+
+
+
 :: jpg
 setlocal
 set foo =.jpg
@@ -290,6 +309,7 @@ move "*.mp4" "%to_path%"
 cd %from_path% 
 rmdir .mp4  
  
+
 
 
 
