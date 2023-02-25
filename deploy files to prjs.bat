@@ -1,8 +1,8 @@
 chcp 65001
 setlocal
 title %0
-set deployed="C:\Users\WIN10PROPC3\Downloads\SERVER_ALPHA\[TO DO]\prj_talk_to_computer\py"
-set overwrited1="C:\Users\WIN10PROPC3\Downloads\SERVER_ALPHA\[TO DO]\PRIVATE_RECORDS\py"
+set deployed="C:\Users\WIN10PROPC3\Downloads\SERVER_ALPHA\[TO DO]\prj_talk_to_computer\git add push commit.bat"
+set overwrited1="C:\Users\WIN10PROPC3\Downloads\SERVER_ALPHA\[TO DO]\PRIVATE_RECORDS\git add push commit.bat"
 REM set overwrited2="C:\Users\WIN10PROPC3\Desktop\SERVER_ALPHA\[TO DO]\prj_chatGPT\py"
 REM set overwrited3="C:\Users\WIN10PROPC3\Desktop\SERVER_ALPHA\[TO DO]\prj_AI_img_classifier\py"
 REM cd "prj_talk_to_computer"
