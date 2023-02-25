@@ -20,9 +20,10 @@ cd ..
 cd "prj_talk_to_computer"
 cd "py"
 py AI_TTS.py "다운로드를 완료하였습니다"
+timeout 2
 
 
-timeout 1
+
 cd ..
 cd ..
 cd "`"
@@ -33,9 +34,10 @@ cd ..
 cd "prj_talk_to_computer"
 cd "py"
 py AI_TTS.py "압축해제를 완료하였습니다"
+timeout 2
 
 
-timeout 1
+
 cd ..
 cd ..
 cd "`"
@@ -46,8 +48,10 @@ cd ..
 cd "prj_talk_to_computer"
 cd "py"
 py AI_TTS.py "압축파일 삭제를 완료하였습니다"
+timeout 2
 
 
-timeout 3
+
+
 taskkill -im alsong.exe
 REM pause
