@@ -1,3 +1,4 @@
+title %~n0
 echo " ______________________________________________________________ variable defination
 setlocal
 for /f "delims=" %%i in ('Powershell.exe get-date -Format 'yyyy MM dd HH mm ss'') do set yyyyMMddHHmmss=%%i

@@ -1,3 +1,4 @@
+title %~n0
 @echo off
 chcp 65001
 setlocal

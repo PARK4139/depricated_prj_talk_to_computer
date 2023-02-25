@@ -1,3 +1,4 @@
+title %~n0
 chcp 65001
 setlocal
 title %0

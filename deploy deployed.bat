@@ -3,7 +3,7 @@ chcp 65001
 setlocal
 for /f "delims=" %%i in ('Powershell.exe get-date -Format 'yyyy MM dd HH mm ss'') do set yyyyMMddHHmmss=%%i
 set log_file=deployed.log
-
+title %~n0
 
 
 cd log
