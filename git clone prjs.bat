@@ -15,7 +15,7 @@ REM git clone https://github.com/PARK4139/prj_withv_RPA.git
 git clone https://github.com/PARK4139/PRIVATE_RECORDS.git
 cd "prj_talk_to_computer"
 cd py
-call py AI_TTS.py "깃허브에 프로젝트 다운로드를 완료했습니다"
+call py AI_TTS.py "깃허브로 부터 프로젝트 다운로드를 완료했습니다"
 timeout 2
 taskkill -im ALSong.exe
 :: 왜 안꺼지냐 alsong..
